@@ -39,9 +39,6 @@ export default {
     { src: "~/plugins/axios" },
     { src: "~/plugins/client-init" },
     { src: "~/plugins/globalMixins" },
-    { src: "~/plugins/vue-infinite-loading", mode: "client"},
-    { src: "~/plugins/vue-pull-refresh", mode: "client"},
-
   ],
   /*
   ** Nuxt.js dev-modules
