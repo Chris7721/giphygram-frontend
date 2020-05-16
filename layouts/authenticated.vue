@@ -1,4 +1,5 @@
 <template>
+<no-ssr>
   <div class="auth_body">
     <load-screen v-if="!appReady" />
 
@@ -18,6 +19,7 @@
     </div>
     
   </div>
+</no-ssr>
 </template>
 
 <script>

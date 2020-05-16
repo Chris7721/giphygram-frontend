@@ -122,11 +122,7 @@ updateLikes(state, {num, post_id}){
   }
   else if(num == 1){
     state.posts[position].likes.push({user: state.authUser.name, user_id: state.authUser._id})
-
-    
   }
-  
-  
   // console.log(state.posts)
 },
 };
