@@ -37,6 +37,7 @@
                         id="artUpload"
                         type="file"
                         name="art-upload"
+                        accept="image/*"
                         />
                 </div>
                     <textarea name="" id="" placeholder="How's your day going? 😎" class="mb-20" v-model="uploadDetails.title"></textarea>
@@ -214,6 +215,7 @@ export default {
         width: 100%;
         border-radius: 3px;
         resize: none;
+        font-size: 15px;
         font-family: 'Mukta';
         padding: 25px;
         box-shadow: 0px 2px 19px rgba(69, 64, 70, 0.3);

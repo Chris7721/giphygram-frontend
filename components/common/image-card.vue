@@ -19,11 +19,6 @@ export default {
   components:{
       AppHeart,
   },
-  computed: {
-      isLiked(){
-                return this.post.likes.some(el => el.user_id == this.authUser._id) 
-            },
-  },
     data(){
             return{
                 authUser: this.$store.state.authUser
@@ -32,7 +27,10 @@ export default {
         computed: {
             isLoggedIn(){
                 return this.$store.getters.isUserLoggedIn
-            }
+            },
+            isLiked(){
+                return this.post.likes.some(el => el.user_id == this.authUser._id) 
+            },
         },
         mounted(){
             // document.addEventListener('contextmenu', event => event.preventDefault());
@@ -60,8 +58,9 @@ export default {
              this.$store.commit("updateLikes", {num: 1, post_id: this.post._id})
             this.$axios.post(`/gifs/${this.post._id}/like`)
                 .then(resp=>{
-                    this.$store.commit("updateLikes", {num: 1, post_id: this.post._id})
+                    // this.$store.commit("updateLikes", {num: 1, post_id: this.post._id})
                     // console.log(resp.data.data)
+                    // console.log("New Like added")
                 })
                 .catch(err=>{
                     console.log(err)

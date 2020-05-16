@@ -79,7 +79,7 @@ export default {
           min-height: 48px;
           padding: 4px 8px;
           text-align: center;
-          font-size: .95em;
+          font-size: 15px;
           vertical-align: middle;
           font-family: 'Mukta';
           cursor: pointer;

@@ -4,7 +4,7 @@
   <div class="cont">
     <div class="loader" id="loginLoader"></div>
     <div class="form_overlay"></div>
-    <div class="header__logo mb-40 mt-30">
+    <div class="header__logo login mb-40 mt-30">
             <nuxt-link to="/app">
                 <h2>Giphygram&#x1F4F8;</h2>
             </nuxt-link>

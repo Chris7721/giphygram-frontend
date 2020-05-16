@@ -1,16 +1,23 @@
 <template>
     <div class="bottom-nav">
+        <div>
         <nuxt-link to="/app">
-       <home-icon />
-        </nuxt-link>
-       <nuxt-link to="/app/search">
-       <search-icon />
-       </nuxt-link>
+            <home-icon />
+        </nuxt-link> 
+        </div>
+        <div>
+           <nuxt-link to="/app/search">
+                <search-icon />
+            </nuxt-link> 
+        </div>
+       
        <div @click="showUploadModal">
           <add-new /> 
        </div>
-        
-       <app-heart class="heart" />
+        <div>
+           <app-heart class="heart" /> 
+        </div>
+       
        <div class="profile" @click="showOption = showOption == true ? false : true" :class="showOption ? 'selected' : ''">
            <transition name="fade">
                 <div v-if="showOption" class="profile-options" @click="logout">

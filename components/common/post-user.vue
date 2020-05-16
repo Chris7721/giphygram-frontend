@@ -101,7 +101,7 @@ export default {
                 h3, small{
                     line-height: 9px;
                     display: block; 
-                    font-size: 13px;
+                    font-size: 15px;
                 }
                 h3{
                     

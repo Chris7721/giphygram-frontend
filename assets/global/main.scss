@@ -69,7 +69,7 @@ a:hover {
     width: 100%;
     background-color: #fafafa;
     // border: 1.5px solid rgba(124, 89, 181, 0.6);
-    font-size: 13.5px;
+    font-size: 14px;
     // font-weight: 600;
     color: #262626;
     font-family: 'Mukta';
@@ -117,7 +117,7 @@ a:hover {
     // min-height: 25px !important;
     // height: 0 !important;
     margin-bottom: 15px;
-    font-size: 13px;
+    font-size: 14px;
         padding: 3px;
         color: #fff;
         border: 1px solid transparent;
@@ -246,11 +246,14 @@ background-color: #0095f6ff;
     a{
         color: #000;
        font-family: 'Merienda One'; 
-       font-size: 1.3em;
+       font-size: 1.4em;
        text-align: center;
        @include respond-before-phone {
-          font-size: 1em;
+          font-size: 1.1em;
       }
+    }
+    &.login{
+      font-size: 1.4em;
     }
     
 }
@@ -293,6 +296,9 @@ background-color: #0095f6ff;
   padding: 0 40px 6px;
   position: relative;
   overflow: hidden;
+  @include respond-before-phone {
+    padding: 0 15px 6px;
+}
 
   &_cover{
     min-height: 100vh;
@@ -313,7 +319,7 @@ background-color: #0095f6ff;
       p{
         display: inline-block;
         margin: 15px;
-        font-size: 14px;
+        font-size: 15px;
         text-align: center;
 
         span{

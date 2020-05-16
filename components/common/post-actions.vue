@@ -1,7 +1,7 @@
 <template>
     <div style="height: 100%; display: flex; flex-direction: column" class="action-body">
                 <div class="post__likes mt-10 pl-lr" v-if="post.likesCount > 0">
-            <span class="content">Liked by <span class="username">{{ post.likes[0].user.split(" ")[0] }}</span> <span v-if="post.likes.length > 1"> and {{ post.likes.length - 1 }} others</span></span>
+            <span class="content">Liked by <span class="username">{{ isLiked ? "You" : post.likes[0].user.split(" ")[0] }}</span> <span v-if="post.likes.length > 1"> and {{  post.likes.length }} others</span></span>
         </div>
         <div class="post__actions mt-10 pl-lr">
             <div class="post__actions-interact">
@@ -149,7 +149,7 @@ export default {
             //if he hasn't add
             if(!this.isLiked){
                 element[1].style.fill = "red"
-                likes.push({user: this.authUser.name, user_id: this.authUser._id})
+                // likes.push({user: this.authUser.name, user_id: this.authUser._id})
                 //hit the like endpoint
                 this.$axios.post(`/gifs/${this.post._id}/like`)
                     .then(resp=>{
@@ -251,7 +251,7 @@ export default {
 }
 .post{
     &__caption{
-        font-size: 13px;
+        font-size: 15px;
         display: flex;
         flex-direction: column;
         color: #262626;
@@ -352,8 +352,7 @@ export default {
         button{
             color: #0095f6;
             font-weight: 700;
-            font-size: .8em;
-            background-color: #f00;
+            font-size: 13px;
         }
     }
     &__comment{
@@ -381,6 +380,7 @@ export default {
                 white-space: pre-wrap !important;
                 height: auto !important;
                 overflow-y: auto;
+                font-size: 15px;
                 // border-bottom: .5px solid #efefef;  
                 // border-top: .5px solid #efefef; 
                 &::-webkit-scrollbar {
@@ -388,7 +388,7 @@ export default {
                 }           
 
                 &::placeholder{
-                    font-size: 13px;
+                    font-size: 15px;
                     transform:translateY(85%);
                     font-family: 'Mukta';
                     line-height: 0;
@@ -434,11 +434,11 @@ export default {
     font-weight: 600;
     display: inline-block;
     cursor: pointer;
-    font-size: 13px;
+    font-size: 15px;
     // margin-right: 5px;
 }
 .content{
-    font-size: 13px;
+    font-size: 15px;
 }
 .user__comment{
     // font-size: .9em;
@@ -493,6 +493,7 @@ export default {
 }
 .trans{
     opacity: .3;
+    font-size: 15px;
 }
 .bookmark{
     fill: red !important;

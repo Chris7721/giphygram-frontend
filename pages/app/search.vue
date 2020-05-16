@@ -87,7 +87,7 @@ export default {
     async mounted(){
         var header = document.querySelector(".search__box");
         var sticky = header.offsetTop;
-        await this.$store.dispatch("fetchPosts", {limit: this.limit, skip: this.skip});
+        await this.$store.dispatch("fetchPosts", {limit: this.limit, skip: this.skip, from: 'search'});
         this.skip += 16
         window.onscroll = function() {
             if (window.pageYOffset > sticky) {
@@ -100,11 +100,11 @@ export default {
 
     methods: {
         async fetchMorePosts($state){
-
+            this.skip += 16
             const posts = await this.$store.dispatch("fetchPosts", {limit: this.limit, skip: this.skip, from: 'search'})
             console.log(posts)
                 if(posts.length > 0){
-                    this.skip += 16
+                    
                     $state.loaded();
                 }
                 else{
