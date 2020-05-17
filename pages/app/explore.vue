@@ -65,6 +65,11 @@ export default {
         InfiniteLoading,
         SearchLoader
     },
+    head () {
+    return {
+      title: 'Giphygram | Explore',
+    }
+  },
     data(){
         return{
             skip: 0,
@@ -223,7 +228,7 @@ export default {
                     opacity: .6;
                 }
                 img{
-                    animation: zoomInOut 6s linear infinite;
+                    animation: zoomInOut 6s linear forwards;
                 }
             }
             &--info{

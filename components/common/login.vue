@@ -13,7 +13,7 @@
       :disabled="validation.password != 'valid-input'
       || validation.email != 'valid-input'"
       :loadig="logging_in">Log in &#x1F9D0;</social-button>
-      <div class="divider mb-20">OR</div>
+      <div class="divider mb-20"><h2>OR</h2></div>
       <div class="option">
         <div class="option_top">
           <facebook-icon />

@@ -35,6 +35,11 @@ import RegisterPage from '~/components/common/register'
       LoginPage,
       RegisterPage
     },
+    head () {
+    return {
+      title: 'Giphygram | Login',
+    }
+  },
     data(){
       return{
         currentPage: 'login'

@@ -283,7 +283,7 @@ background-color: #0095f6ff;
   display: none;
   width: 100%;
   height: 100%;
-  background-color: rgba($color: #000000, $alpha: .3);
+  background-color: rgba($color: #000000, $alpha: .14);
 }
 
 
@@ -377,18 +377,22 @@ background-color: #0095f6ff;
 
   .divider{
     font-weight: 600;
-        display: grid;
-        grid-template-columns: 1fr max-content 1fr;
-        grid-column-gap: 15px;
+        display: flex;
+        // grid-template-columns: 1fr max-content 1fr;
+        // grid-column-gap: 15px;
         align-items: center;
         width: 100%;
         color: #8e8e8e;
           &::before, &::after{
             content: "";
             display: block;
+            flex-grow: 1;
             width: 100% !important;
             height: .1px;
             background-color: #8e8e8e;
+          }
+          &::before, h2{
+            margin-right: 15px;
           }
     
   }
@@ -396,7 +400,11 @@ background-color: #0095f6ff;
 }
 
 .hasError{
-
+  &.dark{
+    p{
+      color: #262626;
+    }
+  }
   p{
     color: orangered;
     font-size: 14px;

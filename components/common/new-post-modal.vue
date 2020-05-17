@@ -20,6 +20,7 @@
             </div>
             <div>
                 <form @submit.prevent="uploadFile" autocomplete="off">
+                    <div  class="hasError dark mb-10"><p>Please be sure that the file is <= 1mb<span> &#x1F636;</span></p></div>
                     <div class="upload form-group mb-20">
                         <div
                         class="upload_content"
@@ -64,7 +65,8 @@ export default {
             uploadDetails: {
                 title: "",
                 file: false
-            }
+            },
+            uploaded: false
         }
     },
     computed: {
@@ -84,6 +86,17 @@ export default {
             this.uploadDetails.title = ""
             this.modalOpen = false
         },
+        setResultText(result){
+            if(result){
+                return 'Post uploaded successfully'
+            }
+            return 'Post not uploaded'        
+    },
+    showMessage(result){
+        this.$store.commit("set_actionText", this.setResultText(result))
+        this.$store.commit("set_uploadedPost", true)
+        this.$store.dispatch("set_copied", true)
+    },
         loadFile(payload) {
             var output = document.getElementById("art-upload");
             var file = payload[0] || payload.target.files[0];
@@ -114,6 +127,8 @@ export default {
            console.log(resp)
            this.uploading = false;
            this.closeModal()
+           this.uploaded = true
+           this.showMessage(true)
        })
        .catch(err => {
            element.classList.remove("anim-loader")
@@ -121,6 +136,8 @@ export default {
            console.log(err)
            this.uploading = false;
            this.closeModal()
+           this.uploaded = true
+           this.showMessage(false)
        })
     }
         
@@ -219,6 +236,9 @@ export default {
         font-family: 'Mukta';
         padding: 25px;
         box-shadow: 0px 2px 19px rgba(69, 64, 70, 0.3);
+        &::-webkit-scrollbar {
+            display: none;
+        }
 
 
         &::placeholder{

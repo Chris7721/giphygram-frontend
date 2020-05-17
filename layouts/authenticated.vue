@@ -1,5 +1,5 @@
 <template>
-<no-ssr>
+<client-only>
   <div class="auth_body">
     <load-screen v-if="!appReady" />
 
@@ -17,9 +17,14 @@
 </div>
 <new-post ref="newPostModal" />
     </div>
-    
+    <transition name= "fade">
+        <app-feedback v-if="uploadedPost && linkCopiedd">
+            <template v-slot:feedback><p>{{ $store.state.actionText }}</p></template>
+        </app-feedback>
+  </transition>
   </div>
-</no-ssr>
+  
+</client-only>
 </template>
 
 <script>
@@ -37,7 +42,13 @@ export default {
     },
     postFetched(){
             return this.$store.state.postsFetched
-    }
+    },
+    uploadedPost(){
+            return this.$store.state.uploadedPost
+        },
+    linkCopiedd(){
+        return this.$store.state.linkCopied
+    },
   },
   components: {
       AuthHeader,

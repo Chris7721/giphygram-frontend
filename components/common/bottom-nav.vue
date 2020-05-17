@@ -6,7 +6,7 @@
         </nuxt-link> 
         </div>
         <div>
-           <nuxt-link to="/app/search">
+           <nuxt-link to="/app/explore">
                 <search-icon />
             </nuxt-link> 
         </div>

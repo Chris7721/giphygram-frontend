@@ -11,5 +11,10 @@
 <script>
 export default {
     layout: "authenticated",
+    head () {
+    return {
+      title: 'Giphygram | Notifications',
+    }
+  },
 }
 </script>

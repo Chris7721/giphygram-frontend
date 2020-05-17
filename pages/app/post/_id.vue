@@ -1,7 +1,7 @@
 <template>
     <div>
         <template>
-          <template v-if="!singlePostFetched">
+          <template v-if="!singlePostFetched" class="mt-20">
                   <instagram-loader />
               </template>
             <div class="post_view" v-if="singlePostFetched && post">
@@ -60,6 +60,11 @@ export default {
         ImageCard,
         InstagramLoader
     },
+    head () {
+    return {
+      title: this.pageHead,
+    }
+  },
     data(){
         return{
             loading: true,
@@ -76,6 +81,12 @@ export default {
         linkCopiedd(){
             return this.$store.state.linkCopied
         },
+        pageHead(){
+          if(this.singlePostFetched && this.post){
+            return `Post by ${this.post.owner.name.toLowerCase()}`
+          }
+          return 'A Giphygram post'
+        }
     },
     async mounted(){
         if (this.$route.params.id) {

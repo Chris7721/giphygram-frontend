@@ -19,7 +19,8 @@ export const state = () => ({
   singlePost: null,
   postsFetched: false,
   singlePostFetched: false,
-  appReady: false
+  appReady: false,
+  uploadedPost: false
 });
 export const getters = {
   getAuthUser: state => state.authUser, 
@@ -56,6 +57,9 @@ export const mutations = {
       set_appLaunch: function(state, payload) {
         state.appReady = payload;
       },
+      set_uploadedPost: function(state, payload) {
+        state.uploadedPost = payload;
+      },      
       set_postsFetched: function(state, payload) {
         state.postsFetched = payload;
       },
@@ -246,6 +250,7 @@ export const actions = {
           commit("append_post", resp.data.data)
           console.log("from store upload", resp.data.data)
           this.$router.push("/app");
+          // commit("set_uploadedPost", true)
           resolve(resp);
         })
         .catch(err => {

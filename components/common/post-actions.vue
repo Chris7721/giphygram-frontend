@@ -190,11 +190,24 @@ export default {
             this.loading = false;
           });
     },
+    setBookmarkText(el){
+        const containsClass = el.classList.contains("bookmark");
+            if(containsClass){
+                return 'Post added to your bookmarks'
+            }
+            return 'Post removed to your bookmarks'        
+    },
     showMessage(el){
+        if(this.isLoggedIn){
         const element = document.getElementsByClassName(el)
+        
          element[0].classList.toggle("bookmark");
-        this.$store.commit("set_actionText", "Post added to your bookmarks")
+        this.$store.commit("set_actionText", this.setBookmarkText(element[0]))
         this.$store.dispatch("set_copied", true)
+        }
+        else{
+             this.$router.push("/")
+        }
     },
     addComment(el){
        const element = document.querySelector(el)

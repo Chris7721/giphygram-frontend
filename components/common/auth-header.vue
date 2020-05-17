@@ -10,7 +10,7 @@
             
         </div>
         <div class="header__search" v-if="isUserLoggedIn">
-            <nuxt-link to="/app/search">
+            <nuxt-link to="/app/explore">
                 <input type="text" class="header__input" placeholder="Search for a user here">
             </nuxt-link>
             
