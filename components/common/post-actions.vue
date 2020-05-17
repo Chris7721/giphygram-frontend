@@ -68,7 +68,7 @@
             <div class="loader" :id="`loader-${post._id}`"></div>
             <form @submit.prevent="addComment(`#loader-${post._id}`)" autocomplete="off">
                 <textarea name="" v-model="newComment" id="" placeholder="Add a comment here..."></textarea> 
-                <button type="submit" :class="newComment.length > 0? 'opaque':'trans'">Post</button>
+                <button :type="newComment.length > 0 ? 'submit' : 'button'" :class="newComment.length > 0? 'opaque':'trans'">Post</button>
             </form>
         </div> 
         </div>
@@ -251,7 +251,7 @@ export default {
         display: flex;
         flex-direction: column;
         color: #262626;
-
+        
         &-info{
         }
         &-detail{
@@ -360,7 +360,7 @@ export default {
             display: flex;
             align-items: center;
             justify-content: center;
-            border-top: .5px solid #efefef;
+            // border-top: .5px solid #efefef;
             overflow: hidden;
             height: 61px;
             textarea{
@@ -400,6 +400,7 @@ export default {
         max-height: 230px;
         overflow-y: auto;
         position: relative;
+        border-bottom: .5px solid #efefef;
           &::-webkit-scrollbar {
             display: none;
         }

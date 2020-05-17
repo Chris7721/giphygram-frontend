@@ -4,7 +4,7 @@
             <div class="post__details-block">
                 <!-- <div class="img"> -->
                     <!-- <img v-if="post.image" :src="post.image" alt=""> -->
-                    <div class="post__image">
+                    <div class="post__image" :class="randomNumber(1, 3) % 2 !== 0 ? 'bg-1':'bg-2'">
                         <!-- <div class="status"></div> -->
                     </div>
                 <!-- </div> -->
@@ -50,6 +50,7 @@ export default {
         },
         mounted(){
             // console.log(this.post)
+            // console.log(document.querySelector('.post__image::after'))
         },
         methods:{
             showModal(){
@@ -134,19 +135,14 @@ export default {
             display: block;
             width: 25px;
         height: 25px;
-        background-color: #eee;
+        // background-color: #eee;
+        background-size: cover;
         border: 3px solid white;
-        // background-color: #f00 !important;
-        
         border-radius: 50%;
-        // border: 2px solid red;
         position: absolute;
         top: 52%;
-  left: 52%;
-  transform: translate(-52%, -52%);
-//   margin-left: -5px;
-        // z-index: -111;
-
+        left: 52%;
+        transform: translate(-52%, -52%);
         }
         
     }
@@ -158,5 +154,16 @@ export default {
     background-color: #eee;
     z-index: 9999;
 }
-
+.bg-1{
+    &::after{
+        background-image: url('/profile-image.jpg');
+    }
+    
+}
+.bg-2{
+    &::after{
+       background-image: url('/profile-pic.jpeg'); 
+    }
+    
+}
 </style>

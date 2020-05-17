@@ -15,7 +15,9 @@
           <add-new /> 
        </div>
         <div>
+            <nuxt-link to="/app/notifications">
            <app-heart class="heart" /> 
+            </nuxt-link>
         </div>
        
        <div class="profile" @click="showOption = showOption == true ? false : true" :class="showOption ? 'selected' : ''">

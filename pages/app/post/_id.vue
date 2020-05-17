@@ -1,11 +1,12 @@
 <template>
     <div>
         <template>
-            <div class="post_view">
-              <template v-if="!singlePostFetched">
+          <template v-if="!singlePostFetched">
                   <instagram-loader />
               </template>
-              <template v-else-if="singlePostFetched">
+            <div class="post_view" v-if="singlePostFetched && post">
+              
+              <template>
                   <div class="post_view-top">
                     <app-user :post="post" /> 
                   </div>
@@ -23,8 +24,18 @@
                     
                   </div>
               </template>
+              
                 
             </div>
+            <template v-if="singlePostFetched && !post">
+                  <div class="message">
+                      <div class="message__body">
+                          <img src="/empty.svg" class="small" alt="">
+                      <h2>Post might have been deleted.</h2>
+                      </div>
+                      
+                  </div>
+              </template>
         </template>
          <transition name= "fade">
         <app-feedback v-if="linkCopiedd">

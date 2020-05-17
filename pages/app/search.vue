@@ -4,15 +4,18 @@
             <input type="text" class="search__input" placeholder="Search for a user here">
         </div>
 
-        <div v-if="!postFetched" class="mt-20 pl-10 pr-10">
-           <template v-for="(loader, index) in 4">
-                <content-loader :key="index" />
+        <div v-if="!postFetched" class="mt-20 search__highlight">
+           <template v-for="(loader, index) in 13">
+               <div class="search__highlight-post" :key="index" :style="`grid-row-end: span ${randomNumber(3, 6)}; opacity: 1 !important`">
+                   <search-loader />
+               </div>
+                
             </template> 
         </div>
 
         <div class="search__highlight" v-if="postFetched">
             <template v-for="(post, index) in posts">
-                <div :key="index" class="search__highlight-post" :style="`grid-row-end: span ${randomNumber(3, 6)};`">
+                <div :key="index" class="search__highlight-post search__highlight-loop" :style="`grid-row-end: span ${randomNumber(3, 6)};`">
                     <img :src="post.giphy" alt="">
                     <app-play class="play" v-if="index % 2 == 0" />
                     <app-stack class="play" v-if="index % 2 !== 0" />
@@ -36,9 +39,9 @@
             </template>            
         </div>
 
-        <infinite-loading @infinite="fetchMorePosts" spinner="waveDots">
+        <infinite-loading @infinite="fetchMorePosts" spinner="waveDots" v-if="postFetched">
                     <div slot="no-more" @click="backtoTop()">No more feeds. Back to <span>&#x1F446;</span> </div>
-                    <div slot="no-results">No results</div>
+                    <div slot="no-results"></div>
         </infinite-loading>
            
 
@@ -51,7 +54,7 @@ import AppHeart from '~/components/icons/heart.vue'
 import AppPlay from '~/components/icons/play-icon.vue'
 import AppStack from '~/components/icons/stack.vue'
 import InfiniteLoading from 'vue-infinite-loading';
-import { ContentLoader } from 'vue-content-loader'
+import SearchLoader from '~/components/loaders/search-loader.vue'
 export default {
     layout: "authenticated",
     components: {
@@ -60,12 +63,14 @@ export default {
         AppPlay,
         AppStack,
         InfiniteLoading,
-        ContentLoader
+        SearchLoader
     },
     data(){
         return{
             skip: 0,
-            limit: 16
+            limit: 15,
+            test: false,
+            prevLength: 0
         }
     },
     computed:{
@@ -85,11 +90,13 @@ export default {
         }
     },
     async mounted(){
+        console.log("called mounted")
         var header = document.querySelector(".search__box");
         var sticky = header.offsetTop;
         const posts = await this.$store.dispatch("fetchPosts", {limit: this.limit, skip: this.skip, from: 'search'});
+        this.skip += 15
         this.loopPosts(0, posts.length - 1)
-        this.skip += 16
+        this.prevLength = posts.length
         window.onscroll = function() {
             if (window.pageYOffset > sticky) {
             header.classList.add("sticky");
@@ -101,20 +108,25 @@ export default {
 
     methods: {
         async fetchMorePosts($state){
-            this.skip += 16
+            console.log("called infinirte")
+            console.log("The length is: ", this.posts.length)
             const posts = await this.$store.dispatch("fetchPosts", {limit: this.limit, skip: this.skip, from: 'search'})
-            console.log(posts)
+            console.log(this.posts)
                 if(posts.length > 0){
+                    this.skip += 15
+                    this.loopPosts(this.prevLength, this.prevLength + posts.length)
+                    this.prevLength = posts.length
                     
+                    // this.loopPosts(0, posts.length - 1)
                     $state.loaded();
                 }
                 else{
-                    console.log($state)
+                    console.log("completed fetching")
                     $state.complete();
                 }
         },  
         loopPosts(start, end){
-            const posts = document.getElementsByClassName('search__highlight-post')
+            const posts = document.getElementsByClassName('search__highlight-loop')
             for(let i = start; i <= end; i++){
                 setTimeout(()=>{
                     posts[i].classList.add('show');
@@ -187,12 +199,13 @@ export default {
                 overflow: hidden;
                 opacity: 0;
                 transition: all 1s;
+                &.show{
+                    animation: searchShow 250ms ease-in forwards !important;
+                }
                 @include respond-before-phone {
                 // height: 125px;
 
-                &.show{
-                    animation: searchShow 250ms ease-in forwards;
-                }
+                
             }
             .play{
                 width: 25px;

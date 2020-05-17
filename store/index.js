@@ -143,7 +143,7 @@ export const actions = {
   initializeApp: function({commit}) {
     setTimeout(()=>{
       commit("set_appLaunch", true)
-    }, 0)
+    }, 2500)
   },
   set_copied: function({commit}, payload) {
     commit("set_copied", payload)

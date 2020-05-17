@@ -16,7 +16,7 @@
         
         <div class="postss" v-if="postFetched">
             <template v-for="(post, index) in posts">
-                <gif-post :key="index" :post="{...post, index}" class="content" @newComment="incrementCommentCount($event)" @commentDeleted="decrementCommentCount($event)" />
+                <gif-post :key="index" :post="{...post, index}" class="content" />
             </template>
             
         </div>

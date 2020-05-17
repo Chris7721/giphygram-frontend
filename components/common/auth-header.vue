@@ -1,7 +1,7 @@
 <template>
     <header class="header">
-        <div @click="showUploadModal" v-if="isUserLoggedIn">
-           <app-camera class="camera" /> 
+        <div @click="showUploadModal" v-if="isUserLoggedIn" class="camera">
+           <app-camera /> 
         </div>
         <div class="header__logo">
             <nuxt-link to="/app">
@@ -17,13 +17,17 @@
         </div>
         <div class="header__options" v-if="isUserLoggedIn">
             <div class="svg">
+                <nuxt-link to="/app">
               <home-icon />  
+                </nuxt-link>
             </div>
-            <div class="svg">
+            <div class="svg" @click="$router.push('/app/inbox')">
               <app-share />   
             </div>
             <div class="svg">
-              <compass-icon />  
+                <nuxt-link to="/app/notifications">
+              <app-heart /> 
+                </nuxt-link> 
             </div>                      
             
             <div class="header__menu" @click="showOption = showOption == true ? false : true" :class="showOption ? 'selected' : ''">
@@ -43,12 +47,12 @@
 import HomeIcon from '~/components/icons/home-icon.vue'
 import AppShare from '~/components/icons/share.vue'
 import AppCamera from '~/components/icons/camera.vue'
-import CompassIcon from '~/components/icons/compass.vue'
+import AppHeart from '~/components/icons/heart-fill.vue'
 import HeaderActions from '~/components/common/header-actions.vue'
 export default {
     components:{
         HomeIcon,
-        CompassIcon,
+        AppHeart,
         AppShare,
         AppCamera,
         HeaderActions
