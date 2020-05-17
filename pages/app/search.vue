@@ -87,7 +87,8 @@ export default {
     async mounted(){
         var header = document.querySelector(".search__box");
         var sticky = header.offsetTop;
-        await this.$store.dispatch("fetchPosts", {limit: this.limit, skip: this.skip, from: 'search'});
+        const posts = await this.$store.dispatch("fetchPosts", {limit: this.limit, skip: this.skip, from: 'search'});
+        this.loopPosts(0, posts.length - 1)
         this.skip += 16
         window.onscroll = function() {
             if (window.pageYOffset > sticky) {
@@ -111,7 +112,16 @@ export default {
                     console.log($state)
                     $state.complete();
                 }
-        },        
+        },  
+        loopPosts(start, end){
+            const posts = document.getElementsByClassName('search__highlight-post')
+            for(let i = start; i <= end; i++){
+                setTimeout(()=>{
+                    posts[i].classList.add('show');
+                }, 200 * i)
+                 
+            }
+        }      
     }
 }
 
@@ -174,8 +184,15 @@ export default {
                 width: 100%;
                 height: 100%;
                 position: relative;
+                overflow: hidden;
+                opacity: 0;
+                transition: all 1s;
                 @include respond-before-phone {
                 // height: 125px;
+
+                &.show{
+                    animation: searchShow 250ms ease-in forwards;
+                }
             }
             .play{
                 width: 25px;
@@ -191,6 +208,9 @@ export default {
                 .search__highlight-post--info{
                     // display: flex;
                     opacity: .6;
+                }
+                img{
+                    animation: zoomInOut 6s linear infinite;
                 }
             }
             &--info{

@@ -13,7 +13,7 @@
       width="1.22204"
       height="13.4425"
       transform="rotate(-45 4.77637 5.58429)"
-      fill="#C4C4C4"
+      fill="#b1b1b1"
     />
     <rect
       x="14.2822"
@@ -21,7 +21,7 @@
       width="1.22204"
       height="13.4425"
       transform="rotate(45 14.2822 4.72021)"
-      fill="#C4C4C4"
+      fill="#b1b1b1"
     />
   </svg>
 </template>

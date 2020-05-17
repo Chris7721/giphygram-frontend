@@ -81,6 +81,7 @@ export default {
             this.modalOpen = true
         },
         closeModal(){
+            this.uploadDetails.title = ""
             this.modalOpen = false
         },
         loadFile(payload) {
@@ -136,7 +137,6 @@ export default {
       &-right{
           display: flex;
           h2{
-              font-weight: 600;
               font-size: 1.2em;
               margin-right: 10px;
           }

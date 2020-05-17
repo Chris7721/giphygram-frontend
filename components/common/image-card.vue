@@ -49,6 +49,9 @@ export default {
             await setTimeout(()=>{
             element[0].classList.remove('like-anim');
          },1000)
+         if(this.isLiked){
+             return
+         }
         }       
                  
          //if he hasn't add

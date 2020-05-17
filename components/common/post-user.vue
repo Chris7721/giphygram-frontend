@@ -2,12 +2,12 @@
     <div class="post__details">
         <option-modal ref="optionModal" />
             <div class="post__details-block">
-                <div class="img">
-                    <img v-if="post.image" :src="post.image" alt="">
+                <!-- <div class="img"> -->
+                    <!-- <img v-if="post.image" :src="post.image" alt=""> -->
                     <div class="post__image">
-                        <div class="status"></div>
+                        <!-- <div class="status"></div> -->
                     </div>
-                </div>
+                <!-- </div> -->
                 <div class="post__user">
                     <div class="post__user-details">
                        <h3>
@@ -63,7 +63,7 @@ export default {
 .post{
         &__details{
             background-color: #fff;
-            position: relative;
+            // position: relative;
         padding: 16px;
         display: flex;
         border: .5px solid #eee ;
@@ -81,12 +81,13 @@ export default {
             display: flex;
             align-items: center;
             .img{
-                position: relative;
+                // position: relative;
             }
 
             .post__user{
                 display: flex;
                 flex-direction: column;
+                margin-left: 15px;
                 &-details{
                     margin-bottom: 7px;
                     display: flex;
@@ -114,22 +115,29 @@ export default {
         }
     }
     &__image{
-        width: 35px;
-        height: 35px;
+        width: 37px;
+        height: 37px;
         border-radius: 50%;
-        background-color: #eee;
-        border: 3px solid white;
-        // box-shadow: 0px 0px 0px 13px rgba(0,0,0,0.75);
+        background: linear-gradient(139deg, #fb8817, #ff4b01, #c12127, #e02aff);
+        // display: none;
         position: relative;
         cursor: pointer;
-        margin-right: 15px;
+        // z-index: 111;
+        display: flex;
+        align-items: center;
+        // &:nth-child(2n+1){
+        //     background: #0f0;
+        // }
 
-        & .status{
+        &::after{
+            content: " ";
             display: block;
-            width: 60px;
-        height: 60px;
+            width: 25px;
+        height: 25px;
+        background-color: #eee;
+        border: 3px solid white;
         // background-color: #f00 !important;
-        background: linear-gradient(70deg,#E1306C, #FCAF45) !important;
+        
         border-radius: 50%;
         // border: 2px solid red;
         position: absolute;
@@ -137,7 +145,7 @@ export default {
   left: 52%;
   transform: translate(-52%, -52%);
 //   margin-left: -5px;
-        z-index: -1;
+        // z-index: -111;
 
         }
         

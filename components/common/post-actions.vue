@@ -141,13 +141,7 @@ export default {
             //  console.log(likes)
             const element = document.getElementsByClassName(el)
             
-            if(!$event){
-                element[0].classList.add('like-anim');
-                await setTimeout(()=>{
-                element[0].classList.remove('like-anim');
-            },1000)
-            }       
-                    
+            
             //if he hasn't add
             if(!this.isLiked){
                 element[1].style.fill = "red"
@@ -498,7 +492,7 @@ export default {
     font-size: 15px;
 }
 .bookmark{
-    fill: red !important;
+    fill: #000 !important;
     stroke: none !important;
     stroke-width: 0;
 }

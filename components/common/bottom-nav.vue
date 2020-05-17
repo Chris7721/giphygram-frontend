@@ -1,5 +1,5 @@
 <template>
-    <div class="bottom-nav">
+    <div class="bottom-nav" v-if="isUserLoggedIn">
         <div>
         <nuxt-link to="/app">
             <home-icon />
@@ -48,6 +48,11 @@ export default {
             showOption: false
         }
     },
+    computed: {
+        isUserLoggedIn(){
+            return this.$store.getters.isUserLoggedIn
+        }
+    },
     methods: {
         logout(){
             this.$store.dispatch("logout")
@@ -89,7 +94,7 @@ export default {
         background-color: #eee;
         position: relative;
         cursor: pointer;
-        background-image: url('/profile-pic.jpeg');
+        background-image: url('/profile-image.jpg');
         background-size: cover;
 
         &.selected{

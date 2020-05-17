@@ -12,7 +12,7 @@ Vue.mixin({
     copyToClipboard(text) {
       var dummy = document.createElement("textarea");
       document.body.appendChild(dummy);
-      const copyText = `localhost:3000/app/post/${text}`
+      const copyText = `https://giphygram-app.herokuapp.com/app/post/${text}`
       dummy.value = copyText;
       dummy.select();
       document.execCommand("copy");

@@ -1,6 +1,8 @@
 <template>
     <header class="header">
-        <app-camera class="camera" v-if="isUserLoggedIn" />
+        <div @click="showUploadModal" v-if="isUserLoggedIn">
+           <app-camera class="camera" /> 
+        </div>
         <div class="header__logo">
             <nuxt-link to="/app">
                 <h2>Giphygram&#x1F4F8;</h2>
@@ -33,6 +35,7 @@
 
             </div>
         </div>
+        <new-post ref="newPostModal" />
     </header>
 </template>
 
@@ -94,7 +97,7 @@ export default {
         background-color: #eee;
         position: relative;
         cursor: pointer;
-        background-image: url('/profile-pic.jpeg');
+        background-image: url('/profile-image.jpg');
         background-size: cover;
         &.selected{
             border: 1px solid #000;
