@@ -1,5 +1,5 @@
 <template>
-<no-ssr>
+<client-only>
   <div>
     <load-screen v-if="!appReady" />
     <div v-else-if="appReady">
@@ -7,7 +7,7 @@
     </div>
     
   </div>
-</no-ssr>
+</client-only>
 </template>
 
 <style>
