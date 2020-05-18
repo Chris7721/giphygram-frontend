@@ -1,5 +1,5 @@
 <template>
-  <div style="height: 80px; margin-top: 10px;">
+  <div class="info-loader">
     <content-loader
       preserveAspectRatio="none"
       primaryColor="#dbdbdb"
@@ -25,3 +25,4 @@ export default {
   }
 };
 </script>
+

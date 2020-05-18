@@ -460,3 +460,11 @@ background-color: #0095f6ff;
   max-width: 819px;
    margin: 0 auto;
 }
+
+.info-loader{
+  height: 40px;
+   margin: 40px 20px 0;
+   @include respond-phone {
+    margin: 10px 20px 0;
+  }
+}
