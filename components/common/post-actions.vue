@@ -60,7 +60,8 @@
             </template>
             </div>
             <div class="add-new" @click="addNewComments" v-if="!showAddButton && !activeOption" >
-                  <add-new /> 
+                  <add-new v-if="!fetchingComments" /> 
+                  <comment-loader v-else-if="fetchingComments" class="comments-load" />
                </div>
             </div>
            
@@ -84,6 +85,7 @@ import AppHeart from '~/components/icons/heart.vue'
 import AppBookmark from '~/components/icons/bookmark.vue'
 import AddNew from '~/components/icons/add-new.vue'
 import ThrashIcon from '~/components/icons/thrash-icon.vue'
+import CommentLoader from '~/components/icons/comment-loader.vue'
 
 export default {
         props: {
@@ -100,8 +102,8 @@ export default {
             AppShare,            
             AppBookmark,
             AddNew,
-            ThrashIcon
-            
+            ThrashIcon,
+            CommentLoader
         },
         computed: {
             isLiked(){
@@ -128,7 +130,7 @@ export default {
                 newComment: "",
                 authUser: this.$store.state.authUser,
                 commentSkip: 3,
-                loading: false,
+                fetchingComments: false,
                 textareaHeight: 20
             }
         },
@@ -175,6 +177,7 @@ export default {
  
     },
     addNewComments(){
+        this.fetchingComments = true;
         this.$axios
           .get(`/gifs/${this.$route.params.id}/comment?skip=${this.commentSkip}`)
           .then(resp => {
@@ -182,12 +185,12 @@ export default {
             this.$store.commit("appendNewComments", {comment: resp.data.data, post_id: this.post.id})
             // this.post.comments = [...this.post.comments, ...resp.data.data]
             // console.log(resp.data.data)
-            this.loading = false;
+            this.fetchingComments = false;
             this.commentSkip += 3
           })
           .catch(err => {
             console.log(err);
-            this.loading = false;
+            this.fetchingComments = false;
           });
     },
     setBookmarkText(el){
