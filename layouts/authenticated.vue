@@ -22,6 +22,11 @@
             <template v-slot:feedback><p>{{ $store.state.actionText }}</p></template>
         </app-feedback>
   </transition>
+  <transition name= "fade">
+        <app-feedback v-if="linkCopiedd">
+            <template v-slot:feedback><p>{{ $store.state.actionText }}</p></template>
+        </app-feedback>
+        </transition>
   </div>
   
 </client-only>
