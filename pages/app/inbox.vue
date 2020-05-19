@@ -1,6 +1,6 @@
 <template>
 <div>
-  <template v-for="(num, index) in 9">
+  <template v-for="(num, index) in 12">
     <div class="notification" :key="index" v-if="!pageLoaded">
       <inbox-loader />
     </div>

@@ -1,6 +1,6 @@
 <template>
     <div class="bottom-nav" v-if="isUserLoggedIn">
-        <div>
+        <div @click="backtoTop()">
         <nuxt-link to="/app">
             <home-icon />
         </nuxt-link> 
