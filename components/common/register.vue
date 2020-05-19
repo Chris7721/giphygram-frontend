@@ -11,7 +11,7 @@
         </div>
       </div>
 
-      <div class="divider mb-20">OR</div>
+      <div class="divider mb-20"><h2>OR</h2></div>
       <div class="hasError mb-20" v-if="hasError"><p>Seems like this email has already been used before <span>&#x1F636;</span></p></div>
         <div class="mb-10 holder">
           <input type="text" placeholder="Name" name="name" v-model="details.name">
