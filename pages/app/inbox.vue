@@ -5,7 +5,7 @@
       <inbox-loader />
     </div>
   </template>
-  <div class="message">
+  <div v-if="pageLoaded" class="message">
         <div class="message__body">
             <img src="/inbox.svg" alt="">
         <h2>No new message</h2>
