@@ -16,11 +16,14 @@ export const state = () => ({
   linkCopied: false,
   actionText: "Action Performed",
   posts: [],
+  searchPosts: [],
   singlePost: null,
   postsFetched: false,
   singlePostFetched: false,
   appReady: false,
-  uploadedPost: false
+  uploadedPost: false,
+  searchSkip: 0,
+  currentPage: 'app'
 });
 export const getters = {
   getAuthUser: state => state.authUser, 
@@ -36,6 +39,9 @@ export const getters = {
 };
 
 export const mutations = {
+    updatePage(state, pageName) {
+      state.currentPage = pageName
+    },
     set_user_info: function(state, payload) {
         state.authUser = payload;
       },
@@ -45,11 +51,20 @@ export const mutations = {
       set_posts: function(state, payload) {
         state.posts = payload;
       },
+      set_search_posts: function(state, payload) {
+        state.searchPosts = payload;
+      },
+      set_search_skip: function(state, payload) {
+        state.searchSkip = payload;
+      },
       append_post: function(state, payload) {
         state.posts.unshift(payload);
       },
       append_post_end: function(state, payload) {
         state.posts.push(...payload);
+      },
+      append_search_post_end: function(state, payload) {
+        state.searchPosts.push(...payload);
       },
       set_single_post: function(state, payload) {
         state.singlePost = payload;
@@ -123,9 +138,12 @@ updateLikes(state, {num, post_id}){
   if(num == -1){
     const likePosition = state.posts[position].likes.findIndex(el => el.user_id == state.authUser._id)
     state.posts[position].likes.splice(likePosition, 1)
+    state.posts[position].isLiked = false
   }
   else if(num == 1){
     state.posts[position].likes.push({user: state.authUser.name, user_id: state.authUser._id})
+    state.posts[position].isLiked = true
+
   }
   // console.log(state.posts)
 },
@@ -147,7 +165,7 @@ export const actions = {
   initializeApp: function({commit}) {
     setTimeout(()=>{
       commit("set_appLaunch", true)
-    }, 2500)
+    }, 0)
   },
   set_copied: function({commit}, payload) {
     commit("set_copied", payload)
@@ -197,20 +215,27 @@ export const actions = {
   fetchPosts({commit, state, getters}, {limit, skip, from}){
     return new Promise((resolve, reject) => {
       //skip is always 0 onFirstLoad, so its better to do this only on first load
+      //without this, when more posts are fetched, only 4 elements(loaders would be on display)
+      //and this takes the scroll to the top, so this messes up the infinite scroll experience
       if(skip == 0){
         console.log("The skip is 0")
         commit("set_postsFetched", false);
       }  
-      if(from == 'search', skip == 0) {
-        commit("set_posts", []);
-      } 
-      
+      if(from == 'search' && skip == 0 && state.searchPosts.length < 1) {
+        commit("set_search_posts", []);
+      }
     this.$axios.get(`/feed?skip=${skip}&limit=${limit}`).then(resp=>{
-      commit("append_post_end", getters.postArray(resp.data));
+      if(from == 'search'){
+        commit("append_search_post_end", resp.data);
+      }
+      else{
+        commit("append_post_end", resp.data);
+      }      
+      console.log(resp.data)
       if(skip == 0){
         commit("set_postsFetched", true);
       }      
-      resolve(getters.postArray(resp.data));
+      resolve(resp.data);
       // console.log(this.posts)
   }).catch(err =>{
     if(skip == 0){
@@ -232,7 +257,7 @@ export const actions = {
 
             // if(post == -1){
               console.log("lmaooo")
-              commit("set_posts", [resp.data])
+              commit("set_single_post", resp.data)
             // }
             // commit("set_single_post", {...resp.data, index: 1})
             commit("set_singlePostsFetched", true)

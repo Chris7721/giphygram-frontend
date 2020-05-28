@@ -1,8 +1,8 @@
 <template>
     <div class="search mt-20">
-        <div class="search__box">
+        <!-- <div class="search__box">
             <input type="text" class="search__input" placeholder="Search for a user here">
-        </div>
+        </div> -->
 
         <div v-if="!postFetched" class="mt-20 search__highlight">
            <template v-for="(loader, index) in 13">
@@ -13,7 +13,7 @@
             </template> 
         </div>
 
-        <div class="search__highlight" v-if="postFetched">
+        <div class="search__highlight" v-if="posts.length > 1">
             <template v-for="(post, index) in posts">
                 <div :key="index" class="search__highlight-post search__highlight-loop" :style="`grid-row-end: span ${randomNumber(3, 6)};`">
                     <img :src="post.giphy" alt="">
@@ -72,7 +72,6 @@ export default {
   },
     data(){
         return{
-            skip: 0,
             limit: 15,
             test: false,
             prevLength: 0
@@ -80,10 +79,16 @@ export default {
     },
     computed:{
         posts(){
-           return this.$store.state.posts
+           return this.$store.state.searchPosts
         },
         postFetched(){
             return this.$store.state.postsFetched
+        },
+        shouldFetch(){
+            return this.$store.state.searchPosts.length < 1 ? true : false
+        },
+        skip(){
+           return this.$store.state.searchSkip
         },
         fixHeader(){
             
@@ -95,20 +100,32 @@ export default {
         }
     },
     async mounted(){
-        console.log("called mounted")
-        var header = document.querySelector(".search__box");
-        var sticky = header.offsetTop;
-        const posts = await this.$store.dispatch("fetchPosts", {limit: this.limit, skip: this.skip, from: 'search'});
-        this.skip += 15
+        // console.log("called mounted")
+        // var header = document.querySelector(".search__box");
+        // var sticky = header.offsetTop;
+        if(this.shouldFetch){
+           const posts = await this.$store.dispatch("fetchPosts", {limit: this.limit, skip: this.skip, from: 'search'});
         this.loopPosts(0, posts.length - 1)
-        this.prevLength = posts.length
-        window.onscroll = function() {
-            if (window.pageYOffset > sticky) {
-            header.classList.add("sticky");
-        } else {
-            header.classList.remove("sticky");
+        this.prevLength = posts.length 
+        this.$store.commit("set_search_skip", this.skip + 15)
+        
         }
-        };
+        else{
+            const posts = document.getElementsByClassName('search__highlight-loop')
+            for(let i = 0; i <= posts.length-1; i++){
+                posts[i].style.opacity = 1;
+            }
+        }
+        // this.loopPosts(0, this.posts.length - 1, false)
+        // this.prevLength = this.posts.length 
+        
+        // window.onscroll = function() {
+        //     if (window.pageYOffset > sticky) {
+        //     header.classList.add("sticky");
+        // } else {
+        //     header.classList.remove("sticky");
+        // }
+        // };
     },
 
     methods: {
@@ -118,7 +135,7 @@ export default {
             const posts = await this.$store.dispatch("fetchPosts", {limit: this.limit, skip: this.skip, from: 'search'})
             console.log(this.posts)
                 if(posts.length > 0){
-                    this.skip += 15
+                    this.$store.commit("set_search_skip", this.skip + 15)
                     this.loopPosts(this.prevLength, this.prevLength + posts.length)
                     this.prevLength = posts.length
                     
@@ -133,9 +150,11 @@ export default {
         loopPosts(start, end){
             const posts = document.getElementsByClassName('search__highlight-loop')
             for(let i = start; i <= end; i++){
-                setTimeout(()=>{
-                    posts[i].classList.add('show');
-                }, 200 * i)
+                if(this.skip < 1){
+                    setTimeout(()=>{
+                        posts[i].classList.add('show');
+                    }, 200 * i)
+                }
                  
             }
         }      
@@ -162,24 +181,7 @@ export default {
                 }
         }
 
-        &__input{
-            margin: 0 auto;
-            height: 38px;
-            max-width: 500px;
-            padding: 11px 10px;
-            background: #fafafa;
-            font-size: 13px;
-            padding: 3px 10px 3px 26px;
-            border-radius: 3px;
-            border: 1px solid #dbdbdb;
-                &::placeholder{
-                    text-align: center;
-                    color: #dbdbdb;
-                }
-                @include respond-phone {
-                    width: 85%;
-                }
-        }
+        
 
         &__highlight{
             display: grid;

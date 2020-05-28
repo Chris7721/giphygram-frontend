@@ -69,7 +69,7 @@ export default {
   baseURL: process.env.BASE_URL
 },
 router: {
-  middleware: ["auth"]
+  middleware: ["auth", "pages"]
 },
   /*
   ** Build configuration

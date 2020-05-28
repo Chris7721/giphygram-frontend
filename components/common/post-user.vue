@@ -13,7 +13,8 @@
                        <h3>
                             {{ post.owner.name.toLowerCase() }}
                         </h3> 
-                        <img src="/verified.png" alt="verified-user" v-if="randomNumber(1, 3) % 2 !== 0">
+                        <img src="/verified.png" alt="verified-user" v-if="randomNumber(1, 3) % 2 !== 0">&nbsp;
+                        <span v-if="isLoggedIn"> • Following</span><span v-else> • <nuxt-link style="color:#0095f6ff;" to="/app">Follow</nuxt-link></span>
                     </div>
                 
                 <small>
@@ -46,6 +47,11 @@ export default {
         data(){
             return{
                 
+            }
+        },
+        computed: {
+            isLoggedIn(){
+                return this.$store.getters.isUserLoggedIn
             }
         },
         mounted(){
@@ -100,13 +106,13 @@ export default {
                         margin-left: 3.5px;
                     }
                 }
-                h3, small{
+                h3, small, span{
                     line-height: 9px;
                     display: block; 
                     font-size: 15px;
                 }
-                h3{
-                    
+                h3,span{
+                    cursor: pointer;
                     font-weight: 600;
                 }
             }

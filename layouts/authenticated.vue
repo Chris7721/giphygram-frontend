@@ -5,7 +5,10 @@
 
     <div v-else-if="appReady">
       <auth-header />
-    <nuxt />
+      <div class="auth_body_app">
+        <nuxt />
+      </div>
+    
     <bottom-nav />
     <div id="button_container" v-if="$store.state.token && postFetched">
   <button class="readButton" @click="showUploadModal">
@@ -161,6 +164,12 @@ button {
       // @include respond-before-phone {
       //             background-color: #fff;
       // }  
+      &_app{
+        margin: calc(54px + 25px) auto 0;
+    @include respond-before-phone {
+        margin-top: 54px;
+      }
+      }
       .addPost{
         width: 80px;
         position: fixed;

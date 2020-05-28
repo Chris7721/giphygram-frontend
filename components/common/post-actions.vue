@@ -2,11 +2,11 @@
 <no-ssr>
     <div style="height: 100%; display: flex; flex-direction: column" class="action-body">
                 <div class="post__likes mt-10 pl-lr" v-if="post.likesCount > 0">
-            <span class="content">Liked by <span class="username">{{ isLiked ? "You" : post.likes[0].user.split(" ")[0] }}</span> <span v-if="post.likes.length > 1"> and {{  post.likesCount }} others</span></span>
+            <span class="content">Liked by <span class="username">{{ post.isLiked ? "You" : post.likes[0].user.split(" ")[0] }}</span> <span v-if="post.likesCount > 1"> and {{  post.likesCount-1 }} {{ post.likesCount >2 ? 'others' : 'other' }}</span></span>
         </div>
         <div class="post__actions mt-10 pl-lr">
             <div class="post__actions-interact">
-                <div @click="likeUI(`interact-${post._id}`, post, $event)" role="button"><app-heart :class="[`interact-${post._id}`, isLiked ? 'liked' : '']" /></div>
+                <div @click="likeUI(`interact-${post._id}`, post, $event)" role="button"><app-heart :class="[`interact-${post._id}`, post.isLiked ? 'liked' : '']" /></div>
                 <div @click="$router.push(`/app/post/${post._id}`)" role="button"><app-comment /></div>
                 <div>
                    <app-share /> 
@@ -145,7 +145,7 @@ export default {
             
             
             //if he hasn't add
-            if(!this.isLiked){
+            if(!this.post.isLiked){
                 element[1].style.fill = "red"
                 // likes.push({user: this.authUser.name, user_id: this.authUser._id})
                 //hit the like endpoint
@@ -158,7 +158,7 @@ export default {
                         console.log(err)
                     })
             } 
-            if(this.isLiked){
+            if(this.post.isLiked){
                 element[1].style.fill = "white"
                 this.$store.commit("updateLikes", {num: -1, post_id: this.post._id})
                 // hit the unlikelike endpoint
