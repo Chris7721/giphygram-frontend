@@ -39,24 +39,24 @@ export default {
      async likeUI(el, {likes}, $event){
          if(this.isLoggedIn){
                      const likeDetails = {user: this.authUser.name, user_id: this.authUser._id}
-         console.log("Like method clicked")
-         console.log(this.post)
+        //  console.log("Like method clicked")
+        //  console.log(this.post)
         //  
          const element = document.getElementsByClassName(el)
-         console.log(element)
+        //  console.log(element)
          if(!$event){
             element[0].classList.add('like-anim');
             await setTimeout(()=>{
             element[0].classList.remove('like-anim');
          },1000)
-         if(this.isLiked){
+         if(this.post.isLiked){
              return
          }
         }       
                  
          //if he hasn't add
-         if(!this.isLiked){
-             console.log("not liked before")
+         if(!this.post.isLiked){
+            //  console.log("not liked before")
              element[1].style.fill = "red"
              this.$store.commit("updateLikes", {num: 1, post_id: this.post._id})
             this.$axios.post(`/gifs/${this.post._id}/like`)
@@ -69,8 +69,8 @@ export default {
                     console.log(err)
                 })
          } 
-         else if(this.isLiked){
-             console.log("have been liked before")
+         else if(this.post.isLiked){
+            //  console.log("have been liked before")
              element[1].style.fill = "white"
              this.$store.commit("updateLikes", {num: -1, post_id: this.post._id})
             this.$axios.delete(`/gifs/${this.post._id}/like`)

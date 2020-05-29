@@ -87,7 +87,7 @@ export default {
     },
     async mounted(){
       // console.log('The nama is: ', this.$route.name)
-      console.log("in unique post")
+      // console.log("in unique post")
         if (this.$route.params.id) {
         await this.$store.dispatch("fetchSinglePost", this.$route.params.id);
         // console.log(this.posts)

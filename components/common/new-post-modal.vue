@@ -108,7 +108,7 @@ export default {
             }
             this.uploadDetails.file = file;
             output.src = URL.createObjectURL(file);
-            console.log(this.uploadDetails)
+            // console.log(this.uploadDetails)
     },
     uploadFile(){
         const element = document.querySelector('#newPostLoader')
@@ -124,7 +124,7 @@ export default {
        .then(resp => {
            element.classList.remove("anim-loader")
            overlay.style.display = "none"
-           console.log(resp)
+        //    console.log(resp)
            this.uploading = false;
            this.closeModal()
            this.uploaded = true

@@ -130,10 +130,10 @@ export default {
 
     methods: {
         async fetchMorePosts($state){
-            console.log("called infinirte")
-            console.log("The length is: ", this.posts.length)
+            // console.log("called infinirte")
+            // console.log("The length is: ", this.posts.length)
             const posts = await this.$store.dispatch("fetchPosts", {limit: this.limit, skip: this.skip, from: 'search'})
-            console.log(this.posts)
+            // console.log(this.posts)
                 if(posts.length > 0){
                     this.$store.commit("set_search_skip", this.skip + 15)
                     this.loopPosts(this.prevLength, this.prevLength + posts.length)
@@ -143,7 +143,7 @@ export default {
                     $state.loaded();
                 }
                 else{
-                    console.log("completed fetching")
+                    // console.log("completed fetching")
                     $state.complete();
                 }
         },  

@@ -14,7 +14,7 @@
                             {{ post.owner.name.toLowerCase() }}
                         </h3> 
                         <img src="/verified.png" alt="verified-user" v-if="randomNumber(1, 3) % 2 !== 0">&nbsp;
-                        <span v-if="isLoggedIn"> • Following</span><span v-else> • <nuxt-link style="color:#0095f6ff;" to="/app">Follow</nuxt-link></span>
+                        <span v-if="currentPage!=='app'"><span v-if="isLoggedIn"> • Following</span><span v-else> • <nuxt-link style="color:#0095f6ff;" to="/app">Follow</nuxt-link></span></span>                        
                     </div>
                 
                 <small>
@@ -52,7 +52,10 @@ export default {
         computed: {
             isLoggedIn(){
                 return this.$store.getters.isUserLoggedIn
-            }
+            },
+            currentPage(){
+            return this.$store.state.currentPage
+        },
         },
         mounted(){
             // console.log(this.post)
@@ -122,8 +125,8 @@ export default {
         }
     }
     &__image{
-        width: 37px;
-        height: 37px;
+        width: 35px;
+        height: 35px;
         border-radius: 50%;
         background: linear-gradient(139deg, #fb8817, #ff4b01, #c12127, #e02aff);
         // display: none;
@@ -143,7 +146,7 @@ export default {
         height: 25px;
         // background-color: #eee;
         background-size: cover;
-        border: 3px solid white;
+        border: 2px solid white;
         border-radius: 50%;
         position: absolute;
         top: 52%;

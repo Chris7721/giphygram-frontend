@@ -77,13 +77,13 @@ export default {
         async fetchMorePosts($state){
 
             const posts = await this.$store.dispatch("fetchPosts", {limit: this.limit, skip: this.skip})
-            console.log(posts)
+            // console.log(posts)
                 if(posts.length > 0){
                     this.skip += 4
                     $state.loaded();
                 }
                 else{
-                    console.log($state)
+                    // console.log($state)
                     $state.complete();
                 }
         },        

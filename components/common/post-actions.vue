@@ -151,7 +151,7 @@ export default {
                 //hit the like endpoint
                 this.$axios.post(`/gifs/${this.post._id}/like`)
                     .then(resp=>{
-                        console.log(resp.data.data)
+                        // console.log(resp.data.data)
                         this.$store.commit("updateLikes", {num: 1, post_id: this.post._id})
                     })
                     .catch(err=>{
@@ -164,7 +164,7 @@ export default {
                 // hit the unlikelike endpoint
                 this.$axios.delete(`/gifs/${this.post._id}/like`)
                     .then(resp=>{
-                        console.log(resp.data.data)
+                        // console.log(resp.data.data)
                     })
                     .catch(err=>{
                         console.log(err)
@@ -237,7 +237,7 @@ export default {
         this.$axios.delete(`/gifs/${comment_id}/comment`)
                 .then(resp=>{
                     element.style.opacity = "1"
-                    console.log("the post is", this.post)
+                    // console.log("the post is", this.post)
                     this.$store.commit("decrementCommentCount", {comment_id, post_id: this.post.id })
                 })
                 .catch(err=>{

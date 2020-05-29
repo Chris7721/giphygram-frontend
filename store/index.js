@@ -104,44 +104,58 @@ export const mutations = {
   addComment(state, comment){
     
     const position = state.posts.findIndex(el => el._id == comment.post_id)
-    console.log(position)
+    // console.log(position)
     state.posts[position].comments.unshift(comment)
     state.posts[position].commentsCount += 1
  },
  decrementCommentCount(state, {comment_id, post_id}){
-   console.log(post_id)
-   console.log("from decc", state.posts)
+  //  console.log(post_id)
+  //  console.log("from decc", state.posts)
    const position = state.posts.findIndex(el => el._id == post_id)
-   console.log("post index, ", position)
+  //  console.log("post index, ", position)
      const commentPosition = state.posts[position].comments.findIndex(el => el._id == comment_id)
-     console.log("comment index, ", commentPosition)
+    //  console.log("comment index, ", commentPosition)
     //  console.log(commentPosition)
     state.posts[position].comments.splice(commentPosition, 1)
     // state.singlePost.comments.splice(commentPosition, 1)
     state.posts[position].commentsCount -= 1
  },
  appendNewComments(state, {comment, post_id}){
-  console.log(post_id)
+  // console.log(post_id)
   const position = state.posts.findIndex(el => el._id == post_id)
-  console.log("the new  comments are: ", comment)
+  // console.log("the new  comments are: ", comment)
   state.posts[position].comments = [...state.posts[position].comments, ...comment]
   // state.singlePost.comments = [...state.singlePost.comments, ...comment]
   // console.log(state.posts)
 },
 updateLikes(state, {num, post_id}){
-  console.log(post_id)
+  // console.log(post_id)
   const position = state.posts.findIndex(el => el._id == post_id)
-  console.log("the found position yaay", position)
+  // console.log("the found position yaay", position)
   state.posts[position].likesCount += num
   // console.log("the new  comments are: ", comment)
   // state.singlePost.likesCount += num
   if(num == -1){
-    const likePosition = state.posts[position].likes.findIndex(el => el.user_id == state.authUser._id)
-    state.posts[position].likes.splice(likePosition, 1)
+    // const likePosition = state.posts[position].likes.findIndex(el => el.user_id == state.authUser._id)
+    // state.posts[position].likes.splice(likePosition, 1)
+    if(state.singlePost){
+      if(state.singlePost._id == post_id){
+        state.singlePost.isLiked = false
+        state.singlePost.likesCount += num
+      }
+      
+    }
     state.posts[position].isLiked = false
   }
   else if(num == 1){
-    state.posts[position].likes.push({user: state.authUser.name, user_id: state.authUser._id})
+    // state.posts[position].likes.push({user: state.authUser.name, user_id: state.authUser._id})
+    if(state.singlePost){
+      if(state.singlePost._id == post_id){
+        state.singlePost.isLiked = true
+        state.singlePost.likesCount += num
+      }
+      
+    }
     state.posts[position].isLiked = true
 
   }
@@ -153,13 +167,13 @@ export const actions = {
   async nuxtServerInit({commit, dispatch}, {route, redirect, req, store, app}) {
     const employeeToken = app.$cookiz.get('g-u-a-t')
     commit('set_token', employeeToken)
-    console.log(employeeToken)
+    // console.log(employeeToken)
     try {
       const response = await this.$axios.get('/employee/me')
       commit('set_user_info', response.data)
       // redirect("/app")
     } catch (error) {
-      console.log('in here now')
+      // console.log('in here now')
     }
   },
   initializeApp: function({commit}) {
@@ -183,7 +197,7 @@ export const actions = {
           commit("create_cookie", resp.data.data.token);
           commit("set_user_info", resp.data.data.employee);          
           
-          console.log(resp)
+          // console.log(resp)
           this.$router.push("/app");
           resolve(resp);
         })
@@ -197,12 +211,12 @@ export const actions = {
       this.$axios
         .post("/employees/admin", {name, email, password})
         .then(resp => {
-          console.log(resp.data)
+          // console.log(resp.data)
           
           commit("set_token", resp.data.token);
           commit("create_cookie", resp.data.token);
           commit("set_user_info", resp.data.employee);
-          console.log(resp)
+          // console.log(resp)
           this.$router.push("/app");
           resolve(resp);
         })
@@ -218,7 +232,7 @@ export const actions = {
       //without this, when more posts are fetched, only 4 elements(loaders would be on display)
       //and this takes the scroll to the top, so this messes up the infinite scroll experience
       if(skip == 0){
-        console.log("The skip is 0")
+        // console.log("The skip is 0")
         commit("set_postsFetched", false);
       }  
       if(from == 'search' && skip == 0 && state.searchPosts.length < 1) {
@@ -231,7 +245,7 @@ export const actions = {
       else{
         commit("append_post_end", resp.data);
       }      
-      console.log(resp.data)
+      // console.log(resp.data)
       if(skip == 0){
         commit("set_postsFetched", true);
       }      
@@ -250,13 +264,14 @@ export const actions = {
     // const post = state.posts.findIndex(el => el._id == postId)
     // console.log(post)
     commit("set_singlePostsFetched", false)
+    // console.log({user_id: state.authUser._id})
     this.$axios
-          .get(`/gifs/${postId}`)
+          .post(`/gifs/${postId}`, {user_id: state.authUser._id})
           .then(resp => {
             // console.log(resp.data);
 
             // if(post == -1){
-              console.log("lmaooo")
+              // console.log("lmaooo")
               commit("set_single_post", resp.data)
             // }
             // commit("set_single_post", {...resp.data, index: 1})
@@ -273,7 +288,7 @@ export const actions = {
         .post("/gifs", payload, multipart)
         .then(resp => {
           commit("append_post", resp.data.data)
-          console.log("from store upload", resp.data.data)
+          // console.log("from store upload", resp.data.data)
           this.$router.push("/app");
           // commit("set_uploadedPost", true)
           resolve(resp);

@@ -18,9 +18,6 @@
                 <template v-if="currentPage == 'inbox'">
                     <new-message />
                 </template>
-                <!-- <template v-else>
-                    &nbsp;
-                </template> -->
             </template>
         </other-auth-header>
         <new-post ref="newPostModal" />
