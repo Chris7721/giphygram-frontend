@@ -8,7 +8,7 @@ export default {
 </script>
 
   <template>
-  <div style="height: 80px; margin-top: 10px; display: block; width: 100%; height: 100%">
+  <div style="height: 80px; display: block; width: 100%; height: 100%">
     <content-loader
       preserveAspectRatio="none"
       primaryColor="#dbdbdb"

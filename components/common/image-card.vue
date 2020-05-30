@@ -33,7 +33,7 @@ export default {
             },
         },
         mounted(){
-            // document.addEventListener('contextmenu', event => event.preventDefault());
+            document.addEventListener('contextmenu', event => event.preventDefault());
         },
       methods:{
      async likeUI(el, {likes}, $event){

@@ -62,7 +62,7 @@
             <div class="add-new" @click="addNewComments" v-if="!showAddButton && !activeOption" >
                   <add-new v-if="!fetchingComments" /> 
                   <comment-loader v-else-if="fetchingComments" class="comments-load" />
-               </div>
+            </div>
             </div>
            
         <div class="post__comment" v-if="$store.state.token">

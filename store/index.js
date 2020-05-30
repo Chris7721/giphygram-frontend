@@ -130,9 +130,9 @@ export const mutations = {
  },
  appendNewComments(state, {comment, post_id}){
   // console.log(post_id)
-  const position = state.posts.findIndex(el => el._id == post_id)
+  // const position = state.posts.findIndex(el => el._id == post_id)
   // console.log("the new  comments are: ", comment)
-  state.posts[position].comments = [...state.posts[position].comments, ...comment]
+  state.singlePost.comments = [...state.singlePost.comments, ...comment]
   // state.singlePost.comments = [...state.singlePost.comments, ...comment]
   // console.log(state.posts)
 },

@@ -17,7 +17,10 @@
 <script>
 export default {
     mounted(){
-        document.querySelector('.oppo').style.width = "50%"
+        if(document.querySelector('.oppo')){
+           document.querySelector('.oppo').style.width = "50%"
+        }
+        
         // classList.add("comments-load")
     },
 }
@@ -32,8 +35,8 @@ export default {
     &__left, &__right, &__center{
         cursor: pointer;
         svg{
-        width: 25px;
-        height: 25px;  
+        width: 22px;
+        height: 22px;  
         }
         
     }

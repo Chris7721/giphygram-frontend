@@ -82,7 +82,8 @@ export default {
            return this.$store.state.searchPosts
         },
         postFetched(){
-            return this.$store.state.postsFetched
+            return false
+            // this.$store.state.postsFetched
         },
         shouldFetch(){
             return this.$store.state.searchPosts.length < 1 ? true : false
