@@ -198,7 +198,7 @@ export default {
             if(containsClass){
                 return 'Post added to your bookmarks'
             }
-            return 'Post removed to your bookmarks'        
+            return 'Post removed from your bookmarks'        
     },
     showMessage(el){
         if(this.isLoggedIn){
