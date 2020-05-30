@@ -225,11 +225,11 @@ background-color: #0095f6ff;
 
 .modal{
   width: 100%;
-  position: absolute;
+  position: fixed;
   top: 0;
-  // left: 0;
+  left: 0;
   right: 0;
-  // bottom: 0;
+  bottom: 0;
   background-color: rgba($color: #000000, $alpha: 0.6);
   z-index: 2222332 !important;
   // display: flex;

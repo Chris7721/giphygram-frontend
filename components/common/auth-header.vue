@@ -1,6 +1,6 @@
 <template>
     <header class="header">
-        <new-post ref="newPostModal" v-if="modalOpen"/>
+        
          <!-- :class="modalOpen ? 'behind' : ''" -->
         <default-auth-header v-if="currentPage == 'app' || $route.path.split('/')[3]" />
         <other-auth-header v-else>
@@ -22,7 +22,7 @@
                 </template>
             </template>
         </other-auth-header>        
-        
+        <new-post ref="newPostModal"/>
     </header>
 </template>
 

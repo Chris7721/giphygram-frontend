@@ -1,5 +1,5 @@
 <template>
-    <div class="modal np">
+    <div class="modal np" v-if="modalOpen">
         <div class="modal__body">
             <div class="loader" id="newPostLoader"></div>
             <div class="form_overlay"></div>
@@ -59,7 +59,6 @@ export default {
     },
     data(){
         return{
-            modalOpen: false,
             uploading: false,
             post: {},
             uploadDetails: {
@@ -75,7 +74,10 @@ export default {
   			return false;
   		}
   		return true;
-  	}
+      },
+      modalOpen(){
+            return this.$store.state.modalOpen
+        },
     },
     methods: {
         openModal(){
