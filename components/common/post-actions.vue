@@ -31,8 +31,8 @@
                <div class="post__comments-block" v-if="post.comments.length > 0">
                
                
-            <span v-if="post.comments.length > 1 && activeOption" class="view-comment"><nuxt-link :to="`app/post/${this.post._id}`">View all {{ post.commentsCount }} comments</nuxt-link></span>
-            <span v-if="post.comments.length > 1 && !activeOption" class="view-comment">{{ post.commentsCount }} comments</span>
+            <span v-if="post.commentsCount > 3 && activeOption" class="view-comment"><nuxt-link :to="`app/post/${this.post._id}`">View all {{ post.commentsCount }} comments</nuxt-link></span>
+            <span v-if="post.commentsCount && !activeOption" class="view-comment">{{ post.commentsCount }} comments</span>
             <template v-for="(comment, index) in post.comments">
                 <div :key="index" class="user__comment" v-if="index < commentLength">
                     <div class="user__comment-main">                        
