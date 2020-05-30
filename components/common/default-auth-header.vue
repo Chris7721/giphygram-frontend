@@ -33,7 +33,7 @@
             <div class="header__menu" @click="showOption = showOption == true ? false : true" :class="showOption ? 'selected' : ''">
                 <transition name="fade">
                 <div v-if="showOption" class="header__menu-options" @click="logout">
-                    <h2>Logout {{ $store.state.authUser.name.split(" ")[0] }}  &#x1F91D;</h2>
+                    <h2>Logout {{ $store.state.authUser.name.split(" ")[0] }} &#x1F91D;</h2>
                 </div>
                 </transition>
 

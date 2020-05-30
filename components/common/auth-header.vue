@@ -9,7 +9,7 @@
             </template>
             <template v-slot:center>
                 <template v-if="currentPage == 'explore'">
-                    <input type="text" class="header__input" :class="currentPage == 'explore' ? 'wide' : ''" placeholder="Search for a user here">
+                    <input type="text" class="header__input oppo" :class="currentPage == 'explore' ? 'wide' : ''" placeholder="Search for a user here">
                 </template>
                 <template v-else>
                     {{ jsUcfirst(headerText) }}
@@ -79,12 +79,13 @@ export default{
       &__input{
             margin: 0 auto;
             height: 30px;
-            width: 50%;
+            width: 250px;
             padding: 11px 10px;
             background: #fafafa;
             font-size: 13px;
             padding: 3px 10px 3px 26px;
             border-radius: 3px;
+            transition: .7s all linear;
             
             border: 1px solid #dbdbdb;
                 &::placeholder{
@@ -92,7 +93,7 @@ export default{
                     color: #dbdbdb;
                 }
                 @include respond-phone {
-                    width: 90%;
+                    width: 90% !important;
                 }
         }
      

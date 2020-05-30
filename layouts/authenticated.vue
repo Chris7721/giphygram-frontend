@@ -21,12 +21,12 @@
   
     </div>
     
-    <transition name= "fade">
+    <transition name= "slideup">
         <app-feedback v-if="uploadedPost && linkCopiedd">
             <template v-slot:feedback><p>{{ $store.state.actionText }}</p></template>
         </app-feedback>
   </transition>
-  <transition name= "fade">
+  <transition name= "slideup">
         <app-feedback v-if="linkCopiedd">
             <template v-slot:feedback><p>{{ $store.state.actionText }}</p></template>
         </app-feedback>

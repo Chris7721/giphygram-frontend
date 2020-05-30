@@ -14,7 +14,14 @@
     </div>
 </template>
 
-
+<script>
+export default {
+    mounted(){
+        document.querySelector('.oppo').style.width = "50%"
+        // classList.add("comments-load")
+    },
+}
+</script>
 <style lang="scss" scoped>
 .header{
     &__left{

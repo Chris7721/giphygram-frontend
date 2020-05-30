@@ -24,7 +24,7 @@
        <div class="profile" @click="showOption = showOption == true ? false : true" :class="showOption ? 'selected' : ''">
            <transition name="fade">
                 <div v-if="showOption" class="profile-options" @click="logout">
-                    <h2>Logout  {{ $store.state.authUser.name.split(" ")[0] }}</h2>
+                    <h2>Logout  {{ $store.state.authUser.name.split(" ")[0] }} &#x1F91D;</h2>
                 </div>
             </transition>
        </div>
