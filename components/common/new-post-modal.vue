@@ -1,5 +1,5 @@
 <template>
-    <div class="modal np" v-if="modalOpen">
+    <div class="modal np">
         <div class="modal__body">
             <div class="loader" id="newPostLoader"></div>
             <div class="form_overlay"></div>
@@ -20,7 +20,7 @@
             </div>
             <div>
                 <form @submit.prevent="uploadFile" autocomplete="off">
-                    <div  class="hasError dark mb-10"><p>Please be sure that the file is <= 1mb<span> &#x1F636;</span></p></div>
+                    <div  class="hasError dark mb-10"><p>Please be sure that the file is &lt;= 1mb<span> &#x1F636;</span></p></div>
                     <div class="upload form-group mb-20">
                         <div
                         class="upload_content"
@@ -78,13 +78,14 @@ export default {
   	}
     },
     methods: {
-        openModal(post){
-            this.post = post
-            this.modalOpen = true
+        openModal(){
+            // this.post = post
+            // this.modalOpen = true
+            // this.$store.commit("set_modal_open", true)
         },
         closeModal(){
-            this.uploadDetails.title = ""
-            this.modalOpen = false
+            // this.modalOpen = false
+            this.$store.commit("set_modal_open", false)
         },
         setResultText(result){
             if(result){
@@ -172,6 +173,7 @@ export default {
   }
 
   &__body{
+      z-index: 3333;
       background-color: #fff;
       padding: 20px;
       max-width: 400px;

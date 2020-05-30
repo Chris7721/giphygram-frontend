@@ -23,7 +23,9 @@ export const state = () => ({
   appReady: false,
   uploadedPost: false,
   searchSkip: 0,
-  currentPage: 'app'
+  feedsSkip: 0,
+  currentPage: 'app',
+  modalOpen: false
 });
 export const getters = {
   getAuthUser: state => state.authUser, 
@@ -42,6 +44,9 @@ export const mutations = {
     updatePage(state, pageName) {
       state.currentPage = pageName
     },
+    set_modal_open(state, payload) {
+      state.modalOpen = payload
+    },
     set_user_info: function(state, payload) {
         state.authUser = payload;
       },
@@ -56,6 +61,9 @@ export const mutations = {
       },
       set_search_skip: function(state, payload) {
         state.searchSkip = payload;
+      },
+      set_feeds_skip: function(state, payload) {
+        state.feedsSkip = payload;
       },
       append_post: function(state, payload) {
         state.posts.unshift(payload);

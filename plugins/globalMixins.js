@@ -41,7 +41,8 @@ Vue.mixin({
     return Math.floor(Math.random() * (max - min) + min);
 },
 showUploadModal(){
-  this.$refs["newPostModal"].openModal(this.post);
+  // this.$refs["newPostModal"].openModal(this.post);
+  this.$store.commit("set_modal_open", true)
 },
 backtoTop(){
   window.scrollTo({

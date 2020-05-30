@@ -19,6 +19,7 @@
            <app-heart class="heart" /> 
             </nuxt-link>
         </div>
+        
        
        <div class="profile" @click="showOption = showOption == true ? false : true" :class="showOption ? 'selected' : ''">
            <transition name="fade">
@@ -27,7 +28,6 @@
                 </div>
             </transition>
        </div>
-        <new-post ref="newPostModal" />
     </div>
 </template>
 

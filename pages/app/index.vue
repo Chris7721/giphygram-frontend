@@ -40,7 +40,6 @@ export default {
   },
     data(){
         return{
-            skip: 0,
             limit: 4
         }
     },
@@ -56,6 +55,9 @@ export default {
         },
         shouldFetch(){
             return this.$store.state.posts.length < 1 ? true : false
+        },
+        skip(){
+            return this.$store.state.feedsSkip
         }
     },
     components: {
@@ -67,7 +69,7 @@ export default {
         if(this.shouldFetch){
            this.$store.dispatch("fetchPosts", {limit: this.limit, skip: this.skip})
         .then(()=>{
-            this.skip += 4
+            this.$store.commit("set_feeds_skip", this.skip + 4)
         })
         .catch() 
         }         
@@ -79,7 +81,7 @@ export default {
             const posts = await this.$store.dispatch("fetchPosts", {limit: this.limit, skip: this.skip})
             // console.log(posts)
                 if(posts.length > 0){
-                    this.skip += 4
+                    this.$store.commit("set_feeds_skip", this.skip + 4)
                     $state.loaded();
                 }
                 else{
@@ -102,7 +104,9 @@ export default {
     max-width: 700px;
     position: relative;
     width: 100%;
-
+    .content{
+        position: relative;
+    }
     .content:last-child{
         @include respond-before-phone {
         // margin-bottom: 60px;

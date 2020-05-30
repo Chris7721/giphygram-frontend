@@ -40,7 +40,7 @@
         </div>
 
         <infinite-loading @infinite="fetchMorePosts" spinner="waveDots" v-if="postFetched">
-                    <div slot="no-more" @click="backtoTop()">No more feeds. Back to <span>&#x1F446;</span> </div>
+                    <div slot="no-more" @click="backtoTop()"></div>
                     <div slot="no-results"></div>
         </infinite-loading>
            

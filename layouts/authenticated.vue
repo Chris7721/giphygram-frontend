@@ -18,8 +18,9 @@
     <p class="labelText">New Post</p>
   </button>
 </div>
-<new-post ref="newPostModal" />
+  
     </div>
+    
     <transition name= "fade">
         <app-feedback v-if="uploadedPost && linkCopiedd">
             <template v-slot:feedback><p>{{ $store.state.actionText }}</p></template>
@@ -57,6 +58,7 @@ export default {
     linkCopiedd(){
         return this.$store.state.linkCopied
     },
+    
   },
   components: {
       AuthHeader,

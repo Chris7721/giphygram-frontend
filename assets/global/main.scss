@@ -2,13 +2,14 @@
 // @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap');
 html{
   background-color: #fafafa;
+  position: relative;
 }
 body {
   margin: 0;
   padding: 0;
   width: 100%;
   /* full window width */
-  
+  position: relative;
   font-family: "Mukta", sans-serif !important;
   padding: 0;
   // background: $white;
@@ -224,13 +225,13 @@ background-color: #0095f6ff;
 
 .modal{
   width: 100%;
-  position: fixed;
+  position: absolute;
   top: 0;
-  left: 0;
+  // left: 0;
   right: 0;
-  bottom: 0;
+  // bottom: 0;
   background-color: rgba($color: #000000, $alpha: 0.6);
-  z-index: 99;
+  z-index: 2222332 !important;
   // display: flex;
   // justify-content: center;
   // align-items: center;
@@ -248,6 +249,7 @@ background-color: #0095f6ff;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
+    z-index: 3333;
     }
   &__logo{
     a{

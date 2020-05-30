@@ -1,5 +1,7 @@
 <template>
     <header class="header">
+        <new-post ref="newPostModal" v-if="modalOpen"/>
+         <!-- :class="modalOpen ? 'behind' : ''" -->
         <default-auth-header v-if="currentPage == 'app' || $route.path.split('/')[3]" />
         <other-auth-header v-else>
             <template v-slot:left>
@@ -19,12 +21,13 @@
                     <new-message />
                 </template>
             </template>
-        </other-auth-header>
-        <new-post ref="newPostModal" />
+        </other-auth-header>        
+        
     </header>
 </template>
 
 <script>
+
 import DefaultAuthHeader from '~/components/common/default-auth-header.vue'
 import OtherAuthHeader from '~/components/common/other-auth-header.vue'
 import BackIcon from '~/components/icons/back-icon.vue'
@@ -45,6 +48,9 @@ export default{
         currentPage(){
             return this.$store.state.currentPage
         },
+        modalOpen(){
+            return this.$store.state.modalOpen
+        },
     },
     watch: {
         currentPage(val){
@@ -59,7 +65,7 @@ export default{
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 1111;
+    z-index: 111;
     width: 100%;
     min-height: 54px;
     padding: 0 80px;
@@ -91,13 +97,7 @@ export default{
         }
      
 }
-.input-enter-active,
-.input-leave-active {
-  transform: scaleX(1.1);
-}
-
-.input-enter,
-.input-leave-to {
-  transform: scaleX(1);
+.behind{
+    z-index: -111;
 }
 </style>
