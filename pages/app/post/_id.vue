@@ -1,8 +1,11 @@
 <template>
     <div>
         <template>
-          <template v-if="!singlePostFetched" class="mt-20">
-                  <instagram-loader />
+          <template v-if="!singlePostFetched">
+            <div style="max-width: 819px;margin: 0 auto;">
+              <instagram-loader class="mt-20" />
+            </div>
+                  
               </template>
             <div class="post_view" v-if="singlePostFetched && post">
               
