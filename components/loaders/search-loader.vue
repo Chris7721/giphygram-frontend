@@ -25,6 +25,6 @@ export default {
 
 <style lang="scss" scoped>
 svg{
-    height: 300px
+    height: 450px
 }
 </style>
