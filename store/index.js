@@ -112,9 +112,17 @@ export const mutations = {
   addComment(state, comment){
     
     const position = state.posts.findIndex(el => el._id == comment.post_id)
+    console.log()
     // console.log(position)
-    state.posts[position].comments.unshift(comment)
-    state.posts[position].commentsCount += 1
+    if(position !== -1){
+      state.posts[position].comments.unshift(comment)
+      state.posts[position].commentsCount += 1
+    }
+    if(state.singlePost._id == comment.post_id){
+      state.singlePost.comments.unshift(comment)
+      state.singlePost.commentsCount += 1
+    }
+
  },
  decrementCommentCount(state, {comment_id, post_id}){
   //  console.log(post_id)

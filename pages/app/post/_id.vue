@@ -3,7 +3,7 @@
         <template>
           <template v-if="!singlePostFetched">
             <div style="max-width: 819px;margin: 0 auto;">
-              <instagram-loader class="mt-20" />
+              <instagram-loader primaryColor="var(--loader-primary)" secondaryColor="var(--loader-secondary)" class="mt-20" />
             </div>
                   
               </template>
