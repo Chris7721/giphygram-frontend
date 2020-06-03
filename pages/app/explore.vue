@@ -167,7 +167,8 @@ export default {
     .search{
         max-width: 819px;
         margin: 0 auto;
-        background-color: #fafafa;
+        background-color: var(--bg);
+        transition: background-color var(--transition-time);
 
         &__box{
             height: 55px;

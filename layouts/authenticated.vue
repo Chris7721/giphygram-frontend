@@ -162,7 +162,8 @@ button {
   }
 }
     .auth_body{
-    background-color: #fafafa;
+    background-color: var(--bg);
+    transition: background-color var(--transition-time);
       // @include respond-before-phone {
       //             background-color: #fff;
       // }  

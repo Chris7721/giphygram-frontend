@@ -74,8 +74,8 @@ export default {
 
       &-item, a{
           width: 100%;
-          color: #000;
-          background-color: #fff;
+          color: var(--font-color-primary);
+          background-color: var(--bg);
           min-height: 48px;
           padding: 4px 8px;
           text-align: center;
@@ -84,7 +84,7 @@ export default {
           font-family: 'Mukta';
           cursor: pointer;
           &:not(:last-child){
-                border-bottom: 1px #eee solid;
+                border-bottom: 1px var(--border-color) solid;
             }
             &--warning{
                 color: #ed4956;

@@ -106,7 +106,7 @@ export default {
     height: 80vh;
     max-width: 819px;
     margin: 0 auto;
-    border: 1px solid #eee;
+    border: 1px solid var(--border-color);
     display: flex;
     align-items: stretch;
     @include respond-tablet {

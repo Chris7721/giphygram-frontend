@@ -3,7 +3,7 @@
         <!-- <h2>{{ shouldFetch }}dhuwei</h2> -->
         <div v-if="!postFetched" class="mt-20 pl-10 pr-10">
            <template v-for="(loader, index) in 4">
-                <instagram-loader :key="index" />
+                <instagram-loader class="mt-20" primaryColor="var(--loader-primary)" secondaryColor="var(--loader-secondary)" :key="index" />
             </template> 
         </div>
         <div class="postss" v-if="postFetched">

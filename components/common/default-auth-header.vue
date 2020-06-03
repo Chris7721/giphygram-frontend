@@ -15,11 +15,16 @@
             </nuxt-link>
             
         </div>
+        
         <div class="header__options" v-if="isUserLoggedIn">
+            <!-- <color-mode-picker /> -->
             <div class="svg">
                 <nuxt-link to="/app">
               <home-icon />  
                 </nuxt-link>
+            </div>
+            <div class="svg">
+                <color-mode-picker />
             </div>
             <div class="svg" @click="$router.push('/app/inbox')">
               <app-share />   
@@ -48,12 +53,14 @@ import HomeIcon from '~/components/icons/home-icon.vue'
 import AppShare from '~/components/icons/share.vue'
 import AppCamera from '~/components/icons/camera.vue'
 import AppHeart from '~/components/icons/heart-fill.vue'
+import ColorModePicker from '~/components/common/color-mode-picker.vue'
 export default {
     components:{
         HomeIcon,
         AppHeart,
         AppShare,
         AppCamera,
+        ColorModePicker
     },
     data(){
         return{
@@ -87,7 +94,7 @@ export default {
         background-image: url('/profile-image.jpg');
         background-size: cover;
         &.selected{
-            border: 1px solid #000;
+            border: 1px solid var(--icons-fill);;
         }
         &-options{
             position: absolute;
@@ -96,8 +103,9 @@ export default {
             width: 150px;
             top: 34px;
             right: -55px;
-            background-color: #fff;
-            border: 1px solid #dbdbdb;
+            color: var(--font-color-secondary);
+            background-color: var(--bg);
+            border: 1px solid var(--border-color);
             border-radius: 3px;
             padding: 6.5px;
             &:hover{
@@ -138,11 +146,9 @@ export default {
         height: 100%;
         width: 100%;
         padding: 11px 10px;
-        background: #fafafa;
         font-size: 13px;
         padding: 3px 10px 3px 26px;
         border-radius: 3px;
-        border: 1px solid #dbdbdb;
         &::placeholder{
             text-align: center;
             color: #dbdbdb;
@@ -157,9 +163,9 @@ export default {
         }
         :not(:last-child){
                 margin-right: 12px;
-                @include respond-before-phone {
-                        margin-right: 0;
-                }
+                // @include respond-before-phone {
+                //         margin-right: 0;
+                // }
             }
             .svg{
                 width: 24px;
@@ -168,14 +174,18 @@ export default {
                svg{
                 width: 100%;
                 height: 100%;
-                fill: #000;
+                fill: var(--icons-fill);
                 // background-color: #f00;
                 z-index: 444;
                 // display: block;
             }  
             }
-            
-            .svg:nth-child(1), .svg:nth-child(3){
+            .svg:nth-child(3){
+                @include respond-before-phone {
+                        margin-right: 0;
+                }
+            }
+            .svg:nth-child(1), .svg:nth-child(4){
                         @include respond-before-phone {
                         display: none;
                         
@@ -191,6 +201,7 @@ export default {
                 height: 24px;
                 cursor: pointer;
                 display: none;
+                fill:  var(--icons-fill);
                 @include respond-before-phone {
                     display: block;
                 }

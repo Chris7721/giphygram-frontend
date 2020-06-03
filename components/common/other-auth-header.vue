@@ -36,7 +36,8 @@ export default {
         cursor: pointer;
         svg{
         width: 22px;
-        height: 22px;  
+        height: 22px; 
+        fill: var(--icons-fill) 
         }
         
     }
@@ -44,6 +45,7 @@ export default {
         text-align: center;
         flex-grow: 1;
         align-content: center;
+        color: var(--font-color-primary)
     }
 }
 </style>

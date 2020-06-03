@@ -72,21 +72,15 @@ export default {
 <style lang="scss" scoped>
 .post{
         &__details{
-            background-color: #fff;
+            background-color: var(--post-color);
+            transition: background-color  var(--transition-time);
             // position: relative;
         padding: 16px;
         display: flex;
-        border: .5px solid #eee ;
+        border-bottom: .5px solid var(--border-color) ;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        @include respond-before-phone {
-            border-top: none;
-            background-color: #fafafa;
-      }
-      @include respond-phone {
-            background-color: #fff;
-      }
         &-block{
             display: flex;
             align-items: center;
@@ -98,6 +92,7 @@ export default {
                 display: flex;
                 flex-direction: column;
                 margin-left: 15px;
+                color: var(--font-color-primary);
                 &-details{
                     margin-bottom: 7px;
                     display: flex;
@@ -122,6 +117,7 @@ export default {
         }
         svg{
             cursor: pointer;
+            fill: var(--icons-fill)
         }
     }
     &__image{

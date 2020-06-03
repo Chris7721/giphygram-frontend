@@ -163,7 +163,7 @@ export default {
           svg{
               width: 24px;
               height: 24px;
-              background-color: #fafafa;
+              background-color: var(--svg-background);
               border-radius: 40px;
               cursor: pointer;
             //   padding: 10px;
@@ -176,7 +176,7 @@ export default {
 
   &__body{
       z-index: 3333;
-      background-color: #fff;
+      background-color: var(--bg);
       padding: 20px;
       max-width: 400px;
       margin: 2em auto 3em;
@@ -204,7 +204,7 @@ export default {
             display: flex;
             justify-content: center;
             width:100%;
-            background-color: #fafafa;
+            background-color: var(--nav-bg);
             box-shadow: 0px 2px 19px rgba(69, 64, 70, 0.3);
 
             padding: 25px 0;
@@ -215,6 +215,9 @@ export default {
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
+                h2{
+                    color: var(--font-color-primary)
+                }
             }
             img{
             width:100px;
@@ -231,9 +234,10 @@ export default {
         }
     }
     textarea{
-        background-color: #fafafa;
+        background-color: var(--nav-bg);
         height: 73px;
         width: 100%;
+        color: var(--font-color-primary);
         border-radius: 3px;
         resize: none;
         font-size: 15px;

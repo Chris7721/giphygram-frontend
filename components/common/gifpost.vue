@@ -76,12 +76,12 @@ export default {
 <style lang="scss" scoped>
 .post{
     width: 100%;
-    border: 1px solid #efefef;
+    border: 1px solid var(--border-color);
     margin-bottom: 40px;
     @include respond-before-phone {
                 margin-bottom: 0;
                 border: none;
-                border-bottom: .9px solid #efefef;
+                border-bottom: .9px solid var(--border-color);
             }
 
     &__gif{

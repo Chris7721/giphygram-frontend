@@ -22,6 +22,7 @@ export default {
         justify-content: center;
         background-color: #fafafa;
         opacity: 1;
+        width: 100% !important;
 
         svg{
             width: 52px;

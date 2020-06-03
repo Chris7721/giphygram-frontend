@@ -1,6 +1,5 @@
 <template>
     <header class="header">
-        
          <!-- :class="modalOpen ? 'behind' : ''" -->
         <default-auth-header v-if="currentPage == 'app' || $route.path.split('/')[3]" />
         <other-auth-header v-else>
@@ -69,8 +68,8 @@ export default{
     width: 100%;
     min-height: 54px;
     padding: 0 80px;
-    background-color: #fff;
-    border-bottom: .06px solid #e5e5e5;
+    background-color: var(--nav-bg);
+    border-bottom: .06px solid var(--header-border);
     
     @include respond-before-phone {
         padding: 0 15.5px;
@@ -81,13 +80,13 @@ export default{
             height: 30px;
             width: 250px;
             padding: 11px 10px;
-            background: #fafafa;
+            
             font-size: 13px;
             padding: 3px 10px 3px 26px;
             border-radius: 3px;
             transition: .7s all linear;
             
-            border: 1px solid #dbdbdb;
+            
                 &::placeholder{
                     text-align: center;
                     color: #dbdbdb;

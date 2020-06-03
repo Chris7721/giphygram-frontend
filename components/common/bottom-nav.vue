@@ -67,7 +67,7 @@ export default {
     padding: 0 15px;
     height: 55px;
     width: 100%;
-    background-color: #fff;
+    background-color: var(--nav-bg);
     position: fixed;
     bottom: 0;
     left: 0;
@@ -82,7 +82,7 @@ export default {
     svg{
         width: 24px;
         height: 24px;
-        fill: #000;
+        fill: var(--icons-fill);
     }
     @include respond-before-phone {
                 display: flex;
@@ -100,7 +100,7 @@ export default {
         background-size: cover;
 
         &.selected{
-            border: 1px solid #000;
+            border: 1px solid var(--icons-fill);
         }
 
         &-options{
@@ -110,20 +110,20 @@ export default {
             width: 150px;
             bottom: 34px;
             right: -9px;
-            background-color: #fff;
-            border: 1px solid #dbdbdb;
+            background-color: var(--nav-bg);
+            border: 1px solid var(--border-color);
             border-radius: 3px;
             padding: 6.5px;
+            color: var(--font-color-secondary);
             &:hover{
                 color: orangered;
             }
         }
     }
     .heart{
-        fill: #fff !important;
-            stroke: #000;
+        fill: var(--heart-fill) !important;
+            stroke: var(--heart-stroke);
                stroke-width: 40px;
-            //    stroke-dasharray: 2,2;
             stroke-linejoin: miter-clip;
     }
 </style>

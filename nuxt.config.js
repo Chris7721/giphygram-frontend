@@ -39,12 +39,13 @@ export default {
     { src: "~/plugins/axios" },
     { src: "~/plugins/client-init" },
     { src: "~/plugins/globalMixins" },
+    { src: "~/plugins/filters" },
   ],
   /*
   ** Nuxt.js dev-modules
   */
   buildModules: [
-    // Doc: https://github.com/nuxt-community/eslint-module
+    '@nuxtjs/color-mode',
     '@nuxtjs/eslint-module'
   ],
   /*

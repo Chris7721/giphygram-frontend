@@ -95,6 +95,7 @@ export default {
 
 <style lang="scss" scoped>
 .post_image{
+    background-color: #fafafa;
     width: 100%;
             height: 100%;
         position: relative;

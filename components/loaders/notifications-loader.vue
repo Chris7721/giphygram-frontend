@@ -2,8 +2,8 @@
   <div class="info-loader">
     <content-loader
       preserveAspectRatio="none"
-      primaryColor="#dbdbdb"
-      secondaryColor="#a9a9a9"
+      primaryColor="var(--loader-primary)"
+      secondaryColor="var(--loader-secondary)"
       :speed="1"
       :height="100"
       :width="400"

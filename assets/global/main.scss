@@ -1,8 +1,59 @@
 
 // @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap');
+:root {
+  --color: #243746;
+  --color-primary: #158876;
+  --color-secondary: #0e2233;
+  --bg: #fafafa;
+  --bg-secondary: #fff;
+  --border-color: #ddd;
+  --nav-bg: #fff;
+  --icons-fill: #000;
+  --heart-fill: #fff;
+  --heart-fill2: transparent;
+  --heart-stroke: #000;
+  --icon-stroke: #000;
+  --header-border: #e5e5e5;
+  --post-color: #fff;
+  --font-color-primary: #000;
+  --font-color-secondary: #262626;
+  --svg-background: #fafafa;
+  --transition-time: .3s;
+  --search-bg: #fafafa;
+  --search-border: #dbdbdb;
+  --loader-primary: #dbdbdb;
+  --loader-secondary: #a9a9a9
+}
+
+.dark-mode {
+  --color: #ebf4f1;
+  --color-primary: #00f;
+  --color-secondary: #fdf9f3;
+  --bg: #000;
+  --bg-secondary: #071521;
+  --border-color: #0d2538;
+  --nav-bg: #181818;
+  --icons-fill: #fff;
+  --heart-fill: #181818;
+  --heart-fill2: transparent;
+  --heart-stroke: #fff;
+  --icon-stroke: #fff;
+  --header-border: transparent;
+  --post-color: #000;
+  --font-color-primary: #fff;
+  --font-color-secondary: #fff;
+  --svg-background: transparent;
+  --transition-time: .3s;
+  --search-bg: #323232;
+  --search-border: transparent;
+  --loader-primary: #181818;
+  --loader-secondary: #323232
+}
 html{
-  background-color: #fafafa;
+  background-color: var(--bg);
   position: relative;
+  transition: background-color .3s;
+  
 }
 body {
   margin: 0;
@@ -23,6 +74,8 @@ body {
   -webkit-text-size-adjust: 100%;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
+  
+  
 }
 input:-webkit-autofill,
 input:-webkit-autofill:hover, 
@@ -242,6 +295,10 @@ background-color: #0095f6ff;
 }
 
 .header{
+  &__input{
+    background: var(--search-bg);
+border: 1px solid var(--search-border) !important;
+  }
     &__top{
       height: 54px;
         width: 100%;
@@ -250,10 +307,11 @@ background-color: #0095f6ff;
     align-items: center;
     justify-content: space-between;
     z-index: 3333;
+    background-color: var(--nav-bg);
     }
   &__logo{
     a{
-        color: #000;
+        color: var(--color);
        font-family: 'Merienda One'; 
        font-size: 1.4em;
        text-align: center;
@@ -411,7 +469,7 @@ background-color: #0095f6ff;
 .hasError{
   &.dark{
     p{
-      color: #262626;
+      color: var(--font-color-primary);
     }
   }
   p{
@@ -453,6 +511,7 @@ background-color: #0095f6ff;
       h2{
           text-align: center;
           font-size: 1.1em;
+          color: var(--font-color-primary)
       }
       img{
           max-width: 300px;

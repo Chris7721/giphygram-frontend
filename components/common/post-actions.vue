@@ -6,7 +6,7 @@
         </div>
         <div class="post__actions mt-10 pl-lr">
             <div class="post__actions-interact">
-                <div @click="likeUI(`interact-${post._id}`, post, $event)" role="button"><app-heart :class="[`interact-${post._id}`, post.isLiked ? 'liked' : '']" /></div>
+                <div @click="likeUI(`interact-${post._id}`, post, $event)" class="post__actions-heart" role="button"><app-heart :class="[`interact-${post._id}`, post.isLiked ? 'liked' : '']" /></div>
                 <div @click="$router.push(`/app/post/${post._id}`)" role="button"><app-comment /></div>
                 <div>
                    <app-share /> 
@@ -19,10 +19,10 @@
         </div>
         <div class="post__caption pl-lr mt-10">
             <div class="post__caption-info">
-                <span class="username">{{ post.owner.name.split(" ")[0].toLowerCase() }}</span>&nbsp;<span class="">{{ post.title }}</span>
+                <span class="username">{{ post.owner.name.split(" ")[0].toLowerCase() }}</span>&nbsp;<span class="caption">{{ post.title }}</span>
             </div>
             <div class="post__caption-detail">
-                <span>{{ randomNumber(1, 12)}} HOURS AGO</span>
+                <span>{{ post.createdAt | formatDate }} ago</span>
             </div>
             
         </div>
@@ -41,8 +41,8 @@
                             <span class="content">{{ comment.comment }}</span>
                         </div>
                         <div class="user__comment-main--bottom">
-                            <span>{{ randomNumber(1, 23) }}h</span> &nbsp;
-                            <span>{{ randomNumber(25, 1500) }} likes</span>&nbsp;
+                            <span>{{ comment.createdAt | formatDate }} ago</span> &nbsp;
+                            <span :id="`reply-${comment._id}-like`">{{ commentLikeCount }} like</span>&nbsp;
                             <span @click="appendUsername(comment.user)">Reply</span>
                         </div>
                     </div> 
@@ -87,6 +87,8 @@ import AddNew from '~/components/icons/add-new.vue'
 import ThrashIcon from '~/components/icons/thrash-icon.vue'
 import CommentLoader from '~/components/icons/comment-loader.vue'
 
+
+
 export default {
         props: {
             post: {
@@ -123,7 +125,10 @@ export default {
             },
             isLoggedIn(){
                 return this.$store.getters.isUserLoggedIn
-            }
+            },
+            // date(){
+            //     return dayjs().from(dayjs(this.post.createdAt), true)
+            // }
         },
         data(){
             return{
@@ -131,11 +136,11 @@ export default {
                 authUser: this.$store.state.authUser,
                 commentSkip: 3,
                 fetchingComments: false,
-                textareaHeight: 20
+                textareaHeight: 20,
+                commentLikeCount: 0
             }
         },
         mounted(){
-            // console.log(this.post)
         },
           methods:{
      async likeUI(el, {likes}, $event){
@@ -159,7 +164,7 @@ export default {
                     })
             } 
             if(this.post.isLiked){
-                element[1].style.fill = "white"
+                element[1].style.fill = "transparent"
                 this.$store.commit("updateLikes", {num: -1, post_id: this.post._id})
                 // hit the unlikelike endpoint
                 this.$axios.delete(`/gifs/${this.post._id}/like`)
@@ -247,7 +252,11 @@ export default {
     },
         likeReply(el){
         const element = document.querySelector(el)
+        const likesElement = document.querySelector(`${el}-like`)
         element.classList.toggle("liked");
+
+        likesElement.innerHTML = likesElement.innerHTML == '0 like' ? '1 like' : '0 like'
+        // this.commentLikeCount++
     },
     appendUsername(name){
        this.newComment = `@${name.split(" ")[0].toLowerCase()}`
@@ -259,7 +268,9 @@ export default {
 <style lang="scss" scoped>
 .action-body{
     // padding-left: 10px;
-    background-color: #fff;
+    background-color: var(--bg);
+     transition: background-color  var(--transition-time);;
+     
 }
 .post{
     &__caption{
@@ -273,6 +284,7 @@ export default {
         &-detail{
             font-size: 10px;
             color: #8e8e8e;
+            text-transform: uppercase;
         }
     }
     &__image{
@@ -296,7 +308,7 @@ export default {
                 margin-right: 15px;
             }
             svg{
-            fill: #000;
+            fill: var(--icons-fill);
             width: 24px;
             height: 24px;
             display: block;
@@ -304,14 +316,6 @@ export default {
             overflow: hidden;
             pointer-events: none;
                 
-        }
-        div:first-child svg{
-            fill: #fff;
-            stroke: #000;
-               stroke-width: 25px;
-            //    stroke-dasharray: 2,2;
-            stroke-linejoin: miter-clip;
-            opacity: 1;
         }
         }
         &-bookmark{
@@ -321,9 +325,25 @@ export default {
                 height: 24px;
                 display: block;
                 pointer-events: none;
-               fill: #fff; 
-               stroke: #000;
+               fill: var(--bg); 
+               stroke: var(--heart-stroke);
                stroke-width: 25px;
+            //    stroke-dasharray: 2,2;
+            stroke-linejoin: miter-clip;
+            opacity: 1;
+            }
+            
+        }
+        &-heart{
+                cursor: pointer;
+            svg{
+                width: 24px;
+                height: 24px;
+                display: block;
+                pointer-events: none;
+               fill: transparent; 
+               stroke: var(--heart-stroke);
+               stroke-width: 40px;
             //    stroke-dasharray: 2,2;
             stroke-linejoin: miter-clip;
             opacity: 1;
@@ -380,6 +400,7 @@ export default {
             overflow: hidden;
             height: 61px;
             textarea{
+                color: var(--font-color-primary);
                 flex-grow: 1;
                 resize: none;
                 font-family: 'Mukta';
@@ -393,6 +414,8 @@ export default {
                 height: auto !important;
                 overflow-y: auto;
                 font-size: 15px;
+                background-color: var(--bg);
+                transition: background-color  var(--transition-time);
                 // border-bottom: .5px solid #efefef;  
                 // border-top: .5px solid #efefef; 
                 &::-webkit-scrollbar {
@@ -408,7 +431,8 @@ export default {
                 }
             }
             button{
-                background-color: #fff;
+                background-color: var(--bg);
+                transition: background-color  var(--transition-time);;
             }
         }
     }
@@ -416,7 +440,7 @@ export default {
         max-height: 230px;
         overflow-y: auto;
         position: relative;
-        border-bottom: .5px solid #efefef;
+        border-bottom: .5px solid var(--border-color);
           &::-webkit-scrollbar {
             display: none;
         }
@@ -443,11 +467,17 @@ export default {
 //         }
     }
 }
+.username,
+.caption,
+.content{
+    color: var(--font-color-secondary)
+}
 .username{
     font-weight: 600;
     display: inline-block;
     cursor: pointer;
     font-size: 15px;
+    
     // margin-right: 5px;
 }
 .content{
@@ -509,9 +539,9 @@ export default {
     font-size: 15px;
 }
 .bookmark{
-    fill: #000 !important;
-    stroke: none !important;
-    stroke-width: 0;
+    fill: var(--icons-fill) !important;
+    // stroke: none !important;
+    // stroke-width: 0;
 }
 .liked{
         fill: red !important;
