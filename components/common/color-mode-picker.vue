@@ -5,7 +5,7 @@
             <div v-if="$colorMode.preference == 'dark'" :key="1" class="mode" @click="$colorMode.preference = 'light'">
                 <icon-light />
             </div>
-            <div v-if="$colorMode.preference == 'light'" :key="2" class="mode" @click="$colorMode.preference = 'dark'">
+            <div v-if="$colorMode.preference == 'light' || $colorMode.preference == 'system'" :key="2" class="mode" @click="$colorMode.preference = 'dark'">
                 <icon-dark />
             </div>
         </transition-group>
