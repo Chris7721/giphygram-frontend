@@ -378,6 +378,7 @@ export default {
             height: 24px;
             display: inline-block;
             text-align: center;
+            fill: var(--icons-fill);
         }  
         }
         
