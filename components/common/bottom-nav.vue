@@ -68,6 +68,7 @@ export default {
     height: 55px;
     width: 100%;
     background-color: var(--nav-bg);
+    transition: background-color  var(--transition-time);
     position: fixed;
     bottom: 0;
     left: 0;

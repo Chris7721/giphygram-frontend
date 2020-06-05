@@ -20,7 +20,8 @@ export default {
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#fff', height: '4px' },
+  // loading: { color: '#fff', height: '4px' },
+  loading: '~/components/common/loading.vue',
   // border-image: linear-gradient(139deg, #fb8817, #ff4b01, #c12127, #e02aff) 3;
   /*
   ** Global CSS

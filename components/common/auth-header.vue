@@ -69,6 +69,7 @@ export default{
     min-height: 54px;
     padding: 0 80px;
     background-color: var(--nav-bg);
+    transition: all  var(--transition-time);
     border-bottom: .06px solid var(--header-border);
     
     @include respond-before-phone {

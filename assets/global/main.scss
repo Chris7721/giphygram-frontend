@@ -308,6 +308,7 @@ border: 1px solid var(--search-border) !important;
     justify-content: space-between;
     z-index: 3333;
     background-color: var(--nav-bg);
+    transition: background-color  var(--transition-time);
     }
   &__logo{
     a{
@@ -539,4 +540,8 @@ border: 1px solid var(--search-border) !important;
 
 .comments-load{
   animation: rotateElement 1s linear infinite;
+}
+
+.infinite-loading-container{
+  color: var(--font-color-primary);
 }

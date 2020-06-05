@@ -2,8 +2,8 @@
     <div class="modal" v-if="modalOpen">
         <div class="modal__body" v-click-outside="closeModal">
             <div class="modal__list">
-                <button class="modal__list-item modal__list-item--warning" @click="closeModal">Report Inappropriate &#x1F620;</button>
-                <button class="modal__list-item modal__list-item--warning" @click="closeModal">Unfollow {{ post.owner.name.split(" ")[0] }} &#x1F4DB;</button>
+                <button class="modal__list-item modal__list-item--warning" v-if="isLoggedIn" @click="closeModal">Report Inappropriate &#x1F620;</button>
+                <button class="modal__list-item modal__list-item--warning" v-if="isLoggedIn" @click="closeModal">Unfollow {{ post.owner.name.split(" ")[0] }} &#x1F4DB;</button>
                 <button class="modal__list-item" @click="closeModal"><nuxt-link :to="`/app/post/${this.post._id}`">Go to post</nuxt-link>&#x1F449;</button>
                 <button class="modal__list-item" @click="copyTextToClipboard(post._id)">Share &#x1F91D;</button>
                 <button class="modal__list-item" @click="copyTextToClipboard(post._id)">Copy Link &#x26A1;</button>
@@ -24,6 +24,11 @@ export default {
             modalOpen: false,
             post: {}
         }
+    },
+    computed: {
+        isLoggedIn(){
+            return this.$store.getters.isUserLoggedIn
+        },
     },
     methods: {
         openModal(post){
