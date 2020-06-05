@@ -13,7 +13,7 @@ export default {
       this.loading = true
     },
     finish () {
-      this.loading = true
+      this.loading = false
     }
   }
 }
