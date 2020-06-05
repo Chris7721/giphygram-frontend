@@ -13,7 +13,7 @@ export default {
       this.loading = true
     },
     finish () {
-      this.loading = false
+      this.loading = true
     }
   }
 }
@@ -26,6 +26,9 @@ export default {
   left: 0;
   width: 100%;
   height: 6px;
+  @include respond-phone {
+          height: 3px;
+}
 //   animation: loader 1s linear forwards;
   background: linear-gradient(90deg, rgb(100, 91, 83) 0%, rgb(235, 82, 82) 18.23%, rgb(247, 143, 47) 34.37%, rgb(244, 193, 81) 48.96%, rgb(82, 187, 118) 66.15%, rgb(38, 165, 215) 82.29%, rgb(224, 105, 183) 100%);
     &-inner{
