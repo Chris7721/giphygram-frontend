@@ -2,7 +2,7 @@
 <no-ssr>
     <div style="height: 100%; display: flex; flex-direction: column" class="action-body">
                 <div class="post__likes mt-10 pl-lr" v-if="post.likesCount > 0">
-            <span class="content">Liked by <span class="username">{{ post.isLiked ? "You" : post.likes[0].user.split(" ")[0] }}</span> <span style="font-weight: 600" v-if="post.likesCount > 1"> and {{  post.likesCount-1 }} {{ post.likesCount >2 ? 'others' : 'other' }}</span></span>
+            <span class="content">Liked by <span class="username">{{ post.isLiked ? "You" : post.likes[0].user.split(" ")[0] }}</span> <span v-if="post.likesCount > 1"> and <span style="font-weight: 600" >{{  post.likesCount-1 }} {{ post.likesCount >2 ? 'others' : 'other' }}</span></span></span>
         </div>
         <div class="post__actions mt-10 pl-lr">
             <div class="post__actions-interact">
