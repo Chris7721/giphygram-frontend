@@ -13,7 +13,7 @@
             </template> 
         </div>
 
-        <div class="search__highlight" v-if="posts.length > 1">
+        <div class="search__highlight" v-if="posts.length > 1 && postFetched">
             <template v-for="(post, index) in posts">
                 <div :key="index" class="search__highlight-post search__highlight-loop" :style="`grid-row-end: span ${randomNumber(3, 6)};`">
                     <img :src="post.giphy" alt="">
@@ -39,7 +39,7 @@
             </template>            
         </div>
 
-        <infinite-loading @infinite="fetchMorePosts" spinner="waveDots" v-if="postFetched">
+        <infinite-loading @infinite="fetchMorePosts" spinner="waveDots" v-if="posts.length > 1 && postFetched">
                     <div slot="no-more" @click="backtoTop()"></div>
                     <div slot="no-results"></div>
         </infinite-loading>

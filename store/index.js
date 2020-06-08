@@ -125,16 +125,17 @@ export const mutations = {
 
  },
  decrementCommentCount(state, {comment_id, post_id}){
-  //  console.log(post_id)
-  //  console.log("from decc", state.posts)
    const position = state.posts.findIndex(el => el._id == post_id)
-  //  console.log("post index, ", position)
-     const commentPosition = state.posts[position].comments.findIndex(el => el._id == comment_id)
-    //  console.log("comment index, ", commentPosition)
-    //  console.log(commentPosition)
+   if(position !== -1){
+    const commentPosition = state.posts[position].comments.findIndex(el => el._id == comment_id)
     state.posts[position].comments.splice(commentPosition, 1)
-    // state.singlePost.comments.splice(commentPosition, 1)
     state.posts[position].commentsCount -= 1
+   }    
+    if(state.singlePost._id == post_id){
+      const commentPosition = state.singlePost.comments.findIndex(el => el._id == comment_id)
+      state.singlePost.comments.splice(commentPosition, 1)
+      state.singlePost.commentsCount -= 1
+    }
  },
  appendNewComments(state, {comment, post_id}){
   // console.log(post_id)
