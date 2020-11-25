@@ -1,6 +1,6 @@
 # office-social
 
-> An app for sharing fun gifs during working hours
+> An app for sharing fun gifs and images with friends
 
 ## Build Setup
 
