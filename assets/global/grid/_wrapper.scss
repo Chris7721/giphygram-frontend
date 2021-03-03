@@ -19,7 +19,7 @@
 
 // float wrapper
 .row.float {
-  [class*="#{$grid-name}-"] {
+  [class*='#{$grid-name}-'] {
     float: left;
   }
   @include clearfix();

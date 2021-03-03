@@ -78,7 +78,7 @@
 }
 
 // opacity function
-@mixin make-opacity($screen-name, $line: "-") {
+@mixin make-opacity($screen-name, $line: '-') {
   @each $option-name, $option-value in $opacity-type-list {
     .#{$option-name}#{$line}#{$screen-name} {
       opacity: #{$option-value};
@@ -88,7 +88,7 @@
 @include make-opacity($screen-name: null, $line: null);
 
 // absolute function
-@mixin make-position($screen-name, $line: "-") {
+@mixin make-position($screen-name, $line: '-') {
   @each $option-name, $option-value in $position-type-list {
     @for $i from 1 through 1 {
       .#{$option-name}#{$line}#{$screen-name} {
@@ -100,7 +100,7 @@
 @include make-position($screen-name: null, $line: null);
 
 // top,riht,bottom,left function
-@mixin make-top-right-bottom-left($screen-name, $line: "-") {
+@mixin make-top-right-bottom-left($screen-name, $line: '-') {
   @each $option-name, $option-value in $top-right-bottom-left-type-list {
     @for $i from 1 through 1 {
       .#{$option-name}#{$line}#{$screen-name} {
@@ -112,11 +112,11 @@
 @include make-top-right-bottom-left($screen-name: null, $line: null);
 
 // padding function
-@mixin make-margin($screen-name, $line: "-") {
+@mixin make-margin($screen-name, $line: '-') {
   @each $option-name, $option-value in $margin-type-list {
     @for $i from 0 through 6 {
       .#{$option-name}-#{$i * 10}#{$line}#{$screen-name} {
-        @if ($option-name == "m") {
+        @if ($option-name == 'm') {
           margin: #{$i * 10px};
         } @else {
           margin-#{$option-value}: #{$i * 10px};
@@ -133,11 +133,11 @@
 @include make-margin($screen-name: null, $line: null);
 
 // margin function
-@mixin make-padding($screen-name, $line: "-") {
+@mixin make-padding($screen-name, $line: '-') {
   @each $option-name, $option-value in $padding-type-list {
     @for $i from 0 through 6 {
       .#{$option-name}-#{$i * 10}#{$line}#{$screen-name} {
-        @if ($option-name == "p") {
+        @if ($option-name == 'p') {
           padding: #{$i * 10px};
         } @else {
           padding-#{$option-value}: #{$i * 10px};
@@ -172,7 +172,7 @@
 .mp-0 {
   .row {
     margin: 0px;
-    [class*="#{$grid-name}"] {
+    [class*='#{$grid-name}'] {
       padding: 0px;
     }
   }

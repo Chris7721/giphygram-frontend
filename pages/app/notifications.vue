@@ -5,41 +5,38 @@
         <notifications-loader />
       </div>
     </template>
-        <div  v-if="pageLoaded" class="message">
-          <div class="message__body">
-              <img class="small" src="/notification.svg" alt="">
-              <h2>No new notifications</h2>
-          </div>
-          
+    <div v-if="pageLoaded" class="message">
+      <div class="message__body">
+        <img class="small" src="/notification.svg" alt="" />
+        <h2>No new notifications</h2>
       </div>
+    </div>
   </div>
 </template>
 
 <script>
 import NotificationsLoader from '~/components/loaders/notifications-loader.vue'
 export default {
-    layout: "authenticated",
-    head () {
+  layout: 'authenticated',
+  head() {
     return {
-      title: 'Giphygram | Notifications',
+      title: 'Giphygram | Notifications'
     }
   },
-  components:{
+  components: {
     NotificationsLoader
   },
-  data(){
-    return{
+  data() {
+    return {
       pageLoaded: false
     }
   },
-  mounted(){
-    setTimeout(()=>{
+  mounted() {
+    setTimeout(() => {
       this.pageLoaded = true
     }, 1500)
   }
 }
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

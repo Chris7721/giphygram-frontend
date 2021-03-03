@@ -1,22 +1,15 @@
 <script>
-import { ContentLoader } from "vue-content-loader";
+import {ContentLoader} from 'vue-content-loader'
 export default {
   components: {
     ContentLoader
   }
-};
+}
 </script>
 
-  <template>
+<template>
   <div style="height: 80px; display: block; width: 100%; height: 100%">
-    <content-loader
-      preserveAspectRatio="none"
-      primaryColor="var(--loader-primary)"
-      secondaryColor="var(--loader-secondary)"
-      :speed="1"
-      :height="700"
-      :width="700"
-    >
+    <content-loader preserveAspectRatio="none" primaryColor="var(--loader-primary)" secondaryColor="var(--loader-secondary)" :speed="1" :height="700" :width="700">
       <rect rx="4" ry="4" r="24" width="800" height="490" />
       <!-- <rect x="105" y="" rx="4" ry="4" r="24" width="100" height="80" /> -->
     </content-loader>
@@ -24,7 +17,7 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-svg{
-    height: 450px
+svg {
+  height: 450px;
 }
 </style>

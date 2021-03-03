@@ -5,17 +5,13 @@
         Uploading Post
       </div>
     </button> -->
-    <button v-if="loading" 
-    class="button norm form-login auth_button_loading" type="button">
+    <button v-if="loading" class="button norm form-login auth_button_loading" type="button">
       <slot></slot>
     </button>
 
-  <button v-else 
-  :type="disabled? 'button':'submit'" 
-  :class="disabled? 'button':'submit'" 
-  class="button norm form-login auth_button">
+    <button v-else :type="disabled ? 'button' : 'submit'" :class="disabled ? 'button' : 'submit'" class="button norm form-login auth_button">
       <slot></slot>
-  </button>
+    </button>
     <!-- <button
       v-else
       :type="disabled? 'button':'submit'"
@@ -33,29 +29,29 @@ export default {
     loading: {
       type: Boolean,
       default() {
-        return false;
+        return false
       }
     },
     disabled: {
       type: Boolean,
       default() {
-        return true;
+        return true
       }
     }
   },
   components: {
     LoaderIcon
   }
-};
+}
 </script>
 <style lang="scss" scoped>
-.button-container{
+.button-container {
   width: 100%;
 }
 .m-auto {
   display: inline-flex;
   align-items: center;
-  svg{
+  svg {
     width: 24px;
     height: 24px;
     fill: #fafafa;
@@ -81,6 +77,4 @@ export default {
     opacity: 1;
   }
 }
-
-
 </style>

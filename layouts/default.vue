@@ -1,24 +1,21 @@
 <template>
-<client-only>
-  <div>
-    <load-screen v-if="!appReady" />
-    <div v-else-if="appReady">
-      <nuxt />
+  <client-only>
+    <div>
+      <load-screen v-if="!appReady" />
+      <div v-else-if="appReady">
+        <nuxt />
+      </div>
     </div>
-    
-  </div>
-</client-only>
+  </client-only>
 </template>
 
-<style>
-
-</style>
+<style></style>
 
 <script>
 import AuthHeader from '~/components/common/auth-header.vue'
 export default {
-    computed: {
-    appReady(){
+  computed: {
+    appReady() {
       return this.$store.state.appReady
     }
   },

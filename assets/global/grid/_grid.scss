@@ -28,7 +28,7 @@
 
 // make scren-size grid
 @each $item, $screen-size in $grid-type-list {
-  @if ($item!= "xs") {
+  @if ($item!= 'xs') {
     @media (min-width: $screen-size) {
       @include make-grid($item);
     }
@@ -61,7 +61,7 @@
 
 // + extend
 
-.row[class*="#{$grid-name}s-"] {
+.row[class*='#{$grid-name}s-'] {
   .#{$grid-name} {
     @extend %grid-property;
   }
