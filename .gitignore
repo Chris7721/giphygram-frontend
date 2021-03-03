@@ -73,7 +73,7 @@ dist
 
 # vuepress build output
 .vuepress/dist
-
+.prettierrc
 # Serverless directories
 .serverless
 
